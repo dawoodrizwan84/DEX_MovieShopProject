@@ -1,3 +1,8 @@
+using DEX_MovieShopProject.Data;
+using DEX_MovieShopProject.Service.Abstract;
+using DEX_MovieShopProject.Service.Implementation;
+using Microsoft.EntityFrameworkCore;
+
 namespace DEX_MovieShopProject
 {
     public class Program
@@ -6,8 +11,19 @@ namespace DEX_MovieShopProject
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+
+            builder.Services.AddDbContext<AppDbContext>(
+            o => o
+            .UseSqlServer(connectionString)
+            );
+
+            builder.Services.AddScoped<IMovieService, MovieService>();
 
             var app = builder.Build();
 
@@ -18,6 +34,7 @@ namespace DEX_MovieShopProject
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
