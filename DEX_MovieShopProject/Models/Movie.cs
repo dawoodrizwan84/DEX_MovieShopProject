@@ -10,6 +10,8 @@ namespace DEX_MovieShopProject.Models
 
         [Display(Name = "Movie Name")]
         [Required]
+        [StringLength(maximumLength:100,
+            MinimumLength =1, ErrorMessage ="Max 100 characters, minimun 2 characters.")]
         public string Title { get; set; }
 
 
