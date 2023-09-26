@@ -11,7 +11,7 @@ namespace DEX_MovieShopProject.Models
         [Display(Name = "Movie Name")]
         [Required]
         [StringLength(maximumLength:100,
-            MinimumLength =1, ErrorMessage ="Max 100 characters, minimun 2 characters.")]
+            MinimumLength =1, ErrorMessage ="Max 100 characters, minimum 2 characters.")]
         public string Title { get; set; }
 
 
@@ -19,10 +19,10 @@ namespace DEX_MovieShopProject.Models
         [Required]
         public string Director { get; set; }
 
-        [Display(Name = "Movie Disciption")]
+        [Display(Name = "Movie Description")]
 
         [StringLength(300)]
-        public int Disciption { get; set; }
+        public string Description { get; set; }
 
         [Display(Name = "Release Year")]
         [Required]
