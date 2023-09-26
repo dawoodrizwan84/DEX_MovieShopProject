@@ -22,7 +22,7 @@ namespace DEX_MovieShopProject.Controllers
         [Route("MI")]
         public IActionResult Index()
         {
-            var movData = movieDb.Movies.ToList();
+            //var movData = movieDb.Movies.ToList();
 
             return View();
         }
