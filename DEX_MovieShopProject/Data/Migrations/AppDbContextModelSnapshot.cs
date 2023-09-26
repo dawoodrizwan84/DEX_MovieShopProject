@@ -69,7 +69,7 @@ namespace DEX_MovieShopProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("DEX_MovieShopProject.Models.Movie", b =>
@@ -100,7 +100,7 @@ namespace DEX_MovieShopProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Movies");
+                    b.ToTable("Movies", (string)null);
                 });
 
             modelBuilder.Entity("DEX_MovieShopProject.Models.Order", b =>
@@ -121,7 +121,7 @@ namespace DEX_MovieShopProject.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("DEX_MovieShopProject.Models.OrderRow", b =>
@@ -147,7 +147,7 @@ namespace DEX_MovieShopProject.Migrations
 
                     b.HasIndex("OrderID");
 
-                    b.ToTable("OrderRows");
+                    b.ToTable("OrderRows", (string)null);
                 });
 
             modelBuilder.Entity("DEX_MovieShopProject.Models.Order", b =>

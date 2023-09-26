@@ -19,9 +19,14 @@ namespace DEX_MovieShopProject.Models
         [Required]
         public string Director { get; set; }
 
+        [Display(Name = "Movie Disciption")]
+
+        [StringLength(300)]
+        public int Disciption { get; set; }
+
         [Display(Name = "Release Year")]
         [Required]
-        public int ReleaseYear { get; set; }
+        public string ReleaseYear { get; set; }
 
         [Display(Name = "Price")]
         [Required]
