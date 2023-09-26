@@ -28,6 +28,7 @@ namespace DEX_MovieShopProject.Models
         [Display(Name = "Image")]
         public string ImgUrl { get; set; }
 
-        //public virtual ICollection<OrderRow> OrderRows { get; set; }
+
+        public virtual ICollection<OrderRow> OrderRows { get; set; }
     }
 }
