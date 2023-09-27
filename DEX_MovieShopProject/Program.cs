@@ -1,6 +1,8 @@
 using DEX_MovieShopProject.Data;
 using DEX_MovieShopProject.Service.Abstract;
 using DEX_MovieShopProject.Service.Implementation;
+using DEX_MovieShopProject.Services.Abstract;
+using DEX_MovieShopProject.Services.Implementation;
 using Microsoft.EntityFrameworkCore;
 
 namespace DEX_MovieShopProject
@@ -24,6 +26,8 @@ namespace DEX_MovieShopProject
             );
 
             builder.Services.AddScoped<IMovieService, MovieService>();
+
+            builder.Services.AddScoped<ICustomerService, CustomerService>();
 
             var app = builder.Build();
 
