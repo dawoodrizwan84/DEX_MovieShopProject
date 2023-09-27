@@ -18,7 +18,7 @@ namespace DEX_MovieShopProject.Controllers
      
         public IActionResult Index()
         {
-            var customerList = 
+           
             
             return View();
         }
