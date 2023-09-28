@@ -1,5 +1,4 @@
-﻿using DEX_MovieShopProject.Data;
-using DEX_MovieShopProject.Models;
+﻿using DEX_MovieShopProject.Models;
 using DEX_MovieShopProject.Service.Abstract;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,12 +16,12 @@ namespace DEX_MovieShopProject.Controllers
             _movieService = movieService;
         }
 
-       
+
 
         [Route("MI")]
         public IActionResult Index()
         {
-            //var movData = movieDb.Movies.ToList();
+            var movieList = _movieService.GetMovies();
 
             return View(movieList);
         }
@@ -37,10 +36,10 @@ namespace DEX_MovieShopProject.Controllers
         public IActionResult Create(Movie newMovie)
         {
             _movieService.CreateMovie(newMovie);
-            return View();
-        }
 
-            return RedirectToAction("Index", "Movie");
+            return View();
+
+
         }
 
         public IActionResult Edit()
@@ -53,29 +52,34 @@ namespace DEX_MovieShopProject.Controllers
         //[Route("ed")]
         public IActionResult Edit(Movie newMovie)
         {
+
             _movieService.UpdateMovie(newMovie);
 
+            return View(newMovie);
 
-            return RedirectToAction("Index");
-
+            //return RedirectToAction("Index");
         }
 
+        [HttpPost, ActionName("Delete")]
         public IActionResult Delete(Movie newMovie)
         {
-            
+
             _movieService.DeleteMovie(newMovie);
+            TempData["delete.data"] = "Data has been deleted.";
+
             return RedirectToAction("Index");
         }
 
         public IActionResult Details(int id)
         {
             var mo = _movieService.GetMovieById(id);
+
             if (mo == null)
             {
-               
+                return NotFound();
 
             }
-        return View();  
+            return View(mo);
 
         }
     }

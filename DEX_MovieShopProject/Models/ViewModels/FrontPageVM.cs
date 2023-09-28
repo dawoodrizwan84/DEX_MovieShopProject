@@ -7,6 +7,8 @@ namespace DEX_MovieShopProject.Models.ViewModels
 
         public List<Movie> CheapMovies { get; set;}
 
+        public List<Movie> TopSellerMovies { get; set;}
+
         Customer BestCustomer { get; set; }
     }
 }

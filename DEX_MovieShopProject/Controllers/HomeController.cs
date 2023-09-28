@@ -1,4 +1,6 @@
 ﻿using DEX_MovieShopProject.Models;
+using DEX_MovieShopProject.Models.ViewModels;
+using DEX_MovieShopProject.Service.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,6 +9,7 @@ namespace DEX_MovieShopProject.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IMovieService _movieService;
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -15,7 +18,14 @@ namespace DEX_MovieShopProject.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var fpvm = _movieService.GetMovies();
+
+            FrontPageVM frontPage = new FrontPageVM();  
+            frontPage.TopFiveMovies = _movieService.GetMovies();
+
+            frontPage.TopSellerMovies = fpvm;
+
+            return View(frontPage);
         }
 
         public IActionResult Privacy()
