@@ -24,7 +24,7 @@ namespace DEX_MovieShopProject.Controllers
         {
             //var movData = movieDb.Movies.ToList();
 
-            return View();
+            return View(movieList);
         }
 
         public IActionResult Create()
@@ -34,11 +34,49 @@ namespace DEX_MovieShopProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Movie newMovie) 
+        public IActionResult Create(Movie newMovie)
         {
             _movieService.CreateMovie(newMovie);
             return View();
         }
 
+            return RedirectToAction("Index", "Movie");
+        }
+
+        public IActionResult Edit()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        //[Route("ed")]
+        public IActionResult Edit(Movie newMovie)
+        {
+            _movieService.UpdateMovie(newMovie);
+
+
+            return RedirectToAction("Index");
+
+        }
+
+        public IActionResult Delete(Movie newMovie)
+        {
+            
+            _movieService.DeleteMovie(newMovie);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Details(int id)
+        {
+            var mo = _movieService.GetMovieById(id);
+            if (mo == null)
+            {
+               
+
+            }
+        return View();  
+
+        }
     }
 }
