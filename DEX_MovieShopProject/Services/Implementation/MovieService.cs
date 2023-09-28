@@ -45,7 +45,7 @@ namespace DEX_MovieShopProject.Service.Implementation
         public void DeleteMovie(Movie newMovie)
         {
             _db.Remove(newMovie);
-            _db.SaveChanges(true);
+            _db.SaveChanges();
         }
 
 

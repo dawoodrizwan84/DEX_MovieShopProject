@@ -37,7 +37,7 @@ namespace DEX_MovieShopProject.Controllers
         {
             _movieService.CreateMovie(newMovie);
 
-            return View();
+           return RedirectToAction("Index");
 
         }
 
@@ -55,16 +55,17 @@ namespace DEX_MovieShopProject.Controllers
 
             return View(newMovie);
 
-            //return RedirectToAction("Index");
+           
         }
 
-
+       
         public IActionResult Delete(Movie newMovie)
         {
 
             _movieService.DeleteMovie(newMovie);
 
-            return View(newMovie);
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Details(int id)
