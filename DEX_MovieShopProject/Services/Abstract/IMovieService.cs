@@ -17,7 +17,7 @@ namespace DEX_MovieShopProject.Service.Abstract
 
         Movie GetMovieById(int id);
 
-       
+
 
     }
 }

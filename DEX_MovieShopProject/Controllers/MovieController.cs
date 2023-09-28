@@ -8,7 +8,7 @@ namespace DEX_MovieShopProject.Controllers
     {
 
         private readonly ILogger<MovieController> _logger;
-        private readonly IMovieService _movieService;
+       private readonly IMovieService _movieService;
 
         public MovieController(ILogger<MovieController> logger, IMovieService movieService)
         {
@@ -39,12 +39,10 @@ namespace DEX_MovieShopProject.Controllers
 
             return View();
 
-
         }
 
         public IActionResult Edit()
         {
-
             return View();
         }
 
@@ -60,14 +58,14 @@ namespace DEX_MovieShopProject.Controllers
             //return RedirectToAction("Index");
         }
 
-        [HttpPost, ActionName("Delete")]
+        
         public IActionResult Delete(Movie newMovie)
         {
 
             _movieService.DeleteMovie(newMovie);
-            TempData["delete.data"] = "Data has been deleted.";
+         
 
-            return RedirectToAction("Index");
+            return View(newMovie);
         }
 
         public IActionResult Details(int id)

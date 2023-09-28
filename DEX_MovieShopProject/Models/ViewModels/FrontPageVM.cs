@@ -9,6 +9,10 @@ namespace DEX_MovieShopProject.Models.ViewModels
 
         public List<Movie> TopSellerMovies { get; set;}
 
+        public List<Movie> NewestMovies { get; set;}
+
+        public List<Movie> OldestMovies { get; set; }
+
         Customer BestCustomer { get; set; }
     }
 }
