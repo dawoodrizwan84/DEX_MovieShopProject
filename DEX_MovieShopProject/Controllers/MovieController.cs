@@ -8,7 +8,7 @@ namespace DEX_MovieShopProject.Controllers
     {
 
         private readonly ILogger<MovieController> _logger;
-       private readonly IMovieService _movieService;
+        private readonly IMovieService _movieService;
 
         public MovieController(ILogger<MovieController> logger, IMovieService movieService)
         {
@@ -58,12 +58,11 @@ namespace DEX_MovieShopProject.Controllers
             //return RedirectToAction("Index");
         }
 
-        
+
         public IActionResult Delete(Movie newMovie)
         {
 
             _movieService.DeleteMovie(newMovie);
-         
 
             return View(newMovie);
         }
