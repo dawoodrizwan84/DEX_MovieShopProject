@@ -8,7 +8,7 @@
             <div class="col">
                 <div class="card border-light mb-3" style="max-width: 25rem;">
                     <div class="card-body">
-                        <a asp-controller="Movie" asp-action="Details" asp-route-id="">
+                        <a asp-controller="Movie" asp-action="Details" asp-route-id="@item.Id">
                             <img src="@item.ImgUrl" class="bd-placeholder-img card-img-top" height="400" alt="...">
                             <h4 class="card-title">@item.Title</h4>
                             <p class="card-text">Director:@item.Director</p>
@@ -17,8 +17,8 @@
                         </a>
                     </div>
                     <div class="btn-group" style="margin-bottom:20px">
-                        <button type="button" class="btn btn-secondary" style="margin:0 10px 0 10px">Add to Cart</button>
-                        <button type="button" class="btn btn-light" style="margin:0 10px 0 10px">View Details</button>
+                        <button type="button" class="btn btn-secondary m-2" onclick="Add(@item.Id)">Add to Cart</button>
+                        <a asp-controller="Movie" asp-action="Details" asp-route-id="@item.Id" class="btn btn-light m-2">View Details</a>
                     </div>
                 </div>
             </div>
@@ -54,3 +54,6 @@
         </li>
     </ul>
 </div>
+
+
+

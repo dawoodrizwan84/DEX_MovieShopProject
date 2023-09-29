@@ -46,37 +46,41 @@ namespace DEX_MovieShopProject.Controllers
 
        }
 
-        public IActionResult Edit()
-        {
 
-            return View();
+        public IActionResult Edit(int id)
+        {
+            var record=_movieService.GetMovieById(id);
+
+            return View(record);
+
+
         }
 
         [HttpPost]
         //[Route("ed")]
         public IActionResult Edit(Movie newMovie)
         {
-            _movieService.UpdateMovie(newMovie);
+            if (!ModelState.IsValid)
+            {
+                return View(newMovie);
+            }
+            var result = _movieService.UpdateMovie(newMovie);
 
+            if (result)
+            {
+                return RedirectToAction("Index");
+            }
+            TempData["msg"] = "Error has occured on server side.";
             return View(newMovie);
-
-
         }
 
-        public IActionResult Delete() 
+
+        public IActionResult Delete(int id) 
         {
-            return View();
-        }
-      
-           
-        public IActionResult Delete(Movie newMovie)
-        {
-
-            _movieService.DeleteMovie(newMovie);
-
-
+            var result = _movieService.DeleteMovie(id); 
             return RedirectToAction("Index");
         }
+      
 
         public IActionResult Details(int id)
         {

@@ -15,12 +15,12 @@ namespace DEX_MovieShopProject.Controllers
             _customerService = customerService;
         }
 
-     
+
         public IActionResult Index()
         {
-           
-            
-            return View();
+            var custList = _customerService.GetCustomer();
+
+            return View(custList);
         }
 
         public IActionResult Create()
@@ -32,7 +32,51 @@ namespace DEX_MovieShopProject.Controllers
         public IActionResult Create(Customer newCustomer)
         {
             _customerService.CreateCustomer(newCustomer);
-            return View();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var record = _customerService.GetCustomerById(id);
+            return View(record);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Customer newCustomer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(newCustomer);
+            }
+            var result = _customerService.UpdateCustomer(newCustomer);
+
+            if (result)
+            {
+                return RedirectToAction("Index");
+            }
+            TempData["msg"] = "Error has occured on server side.";
+            return View(newCustomer);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var result = _customerService.DeleteCustomer(id);
+            return RedirectToAction("Index");
+
+        }
+
+
+        public IActionResult Details(int id)
+        {
+            var cust = _customerService.GetCustomerById(id);
+
+            if(cust == null)
+            {
+                return NotFound();
+            }
+
+            return View(cust);
+
         }
     }
 }

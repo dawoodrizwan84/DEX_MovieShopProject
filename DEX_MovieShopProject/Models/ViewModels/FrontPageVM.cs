@@ -15,6 +15,8 @@ namespace DEX_MovieShopProject.Models.ViewModels
 
         public List<Movie> OldestMovies { get; set; }
 
-        //Customer BestCustomer { get; set; }
+        Customer BestCustomer { get; set; }
+
+        public Order TotalOrder { get; set; }
     }
 }

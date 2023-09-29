@@ -16,10 +16,63 @@ namespace DEX_MovieShopProject.Services.Implementation
 
         }
         List<Customer> Customers { get; set; } = new List<Customer>();  
+
+        public List<Customer>GetCustomer() 
+        {
+        return _db.Customers.ToList();
+        }
+
+        public Customer GetCustomerById(int id)
+        {
+            return _db.Customers.Find(id);
+        }
+
+
+
+
         public void CreateCustomer(Customer newCustomer)
         {
             _db.Customers.Add(newCustomer);
             _db.SaveChanges();
+        }
+
+        public bool UpdateCustomer(Customer newCustomer)
+        {
+            try 
+            {
+                _db.Customers.Update(newCustomer);
+                _db.SaveChanges();
+                return true;
+            }
+
+            catch (Exception ex) 
+            
+            {
+                return false;
+            }
+        
+        
+        }
+
+        public bool DeleteCustomer(int id)
+        {
+            try 
+            {
+                var data = this.GetCustomerById(id);
+                if(data != null)
+                {
+                    return false;
+                }
+                _db.Customers.Remove(data);
+                _db.SaveChanges();
+                return true;
+            }
+
+            catch (Exception ex) 
+            {
+                return false;
+            }
+        
         }
     }
 }

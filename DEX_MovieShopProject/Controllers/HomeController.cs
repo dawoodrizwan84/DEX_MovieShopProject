@@ -16,10 +16,14 @@ namespace DEX_MovieShopProject.Controllers
        
         private readonly ICustomerService _customerService;
 
-        public HomeController(ILogger<HomeController> logger, IMovieService movieService)
+        private readonly IOrderService _orderService;
+
+        public HomeController(ILogger<HomeController> logger, IMovieService movieService,ICustomerService customerService, IOrderService orderService)
         {
             _logger = logger;
             _movieService=movieService;
+            _customerService=customerService;
+            _orderService=orderService;
         }
 
         public IActionResult Index()
@@ -54,9 +58,6 @@ namespace DEX_MovieShopProject.Controllers
 
             return View(frontPage);
 
-            //FrontPageVM frontPage = new FrontPageVM();
-            //frontPage.CheapMovies = _movieService.GetMovies();
-            //frontPage.TopFiveMovies = _movieService.GetMovies();
 
         }
 
