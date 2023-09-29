@@ -1,10 +1,46 @@
-﻿@{
-    ViewData["Title"] = "";
+@model DEX_MovieShopProject.Models.ViewModels.FrontPageVM
+
+@{
+    ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4" style="margin-top:50px">Welcome To DEX Movie Shop</h1>
+  
 </div>
+
+
+@* -----------------carousel-------------- *@
+
+<partial name="_carouselPartial"/>
+
+
+
+@* --------------movie List all-------------- *@
+
+<h4 class="m-5 text-center">Movie List</h4>
+
+<partial name="_movieListPartial" model="Model.AllMovies" />
+
+
+
+
+@* -----------------movie List-------------- *@
+
+<h4 class="m-5 text-center">Our bestsellers</h4>
+<partial name="_moviesPartial" model="Model.CheapMovies" />
+
+<h4 class="m-5 text-center">Cheap Movies</h4>
+<partial name="_moviesPartial" model="Model.CheapMovies" />
+
+<h4 class="m-5 text-center">NewestMovies</h4>
+<partial name="_moviesPartial" model="Model.NewestMovies" />
+
+<h4 class="m-5 text-center">Oldest Movies</h4>
+<partial name="_moviesPartial" model="Model.OldestMovies" />
+
+
+
+
 
 

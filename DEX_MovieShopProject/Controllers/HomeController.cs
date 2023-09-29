@@ -16,41 +16,47 @@ namespace DEX_MovieShopProject.Controllers
        
         private readonly ICustomerService _customerService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IMovieService movieService)
         {
             _logger = logger;
+            _movieService=movieService;
         }
 
         public IActionResult Index()
         {
 
-            //var movies = _movieService.GetMovies();
+            var movies = _movieService.GetMovies();
 
-            //FrontPageVM frontPage = new FrontPageVM();
+            FrontPageVM frontPage = new FrontPageVM();
 
-            //frontPage.TopFiveMovies = _movieService.GetMovies();
+            frontPage.TopFiveMovies = _movieService.GetMovies();
 
-            //frontPage.CheapMovies = movies
-            //    .OrderBy(m => m.Price)
-            //    .Take(5).ToList();
+            frontPage.CheapMovies = movies
+                .OrderBy(m => m.Price)
+                .Take(5).ToList();
 
-            //frontPage.NewestMovies = movies
-            //   .OrderByDescending(m => m.ReleaseYear)
-            //   .Take(5).ToList();
+            frontPage.NewestMovies = movies
+               .OrderByDescending(m => m.ReleaseYear)
+               .Take(5).ToList();
 
-            //frontPage.OldestMovies = movies
-            //  .OrderBy(m => m.ReleaseYear)
-            //  .Take(5).ToList();
+            frontPage.OldestMovies = movies
+              .OrderBy(m => m.ReleaseYear)
+              .Take(5).ToList();
 
-            //frontPage.TopSellerMovies = movies;
+            frontPage.AllMovies = movies
+                .OrderByDescending(m => m.Title) 
+                //.Take(Range.All)
+                .Take(6)
+                .ToList();
 
-            return View(/*frontPage*/);
+
+            frontPage.TopSellerMovies = movies;
+
+            return View(frontPage);
 
             //FrontPageVM frontPage = new FrontPageVM();
             //frontPage.CheapMovies = _movieService.GetMovies();
             //frontPage.TopFiveMovies = _movieService.GetMovies();
-
-            return View();
 
         }
 

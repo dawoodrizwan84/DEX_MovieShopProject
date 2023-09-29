@@ -24,8 +24,6 @@
     <Folder Include="Data\" />
     <Folder Include="Data\Script\" />
     <Folder Include="Models\" />
-    <Folder Include="wwwroot\css\" />
-    <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\js\" />
     <Folder Include="wwwroot\lib\bootstrap\" />
     <Folder Include="wwwroot\lib\bootstrap\dist\js\" />
@@ -34,6 +32,29 @@
     <Folder Include="wwwroot\lib\jquery-validation\dist\" />
     <Folder Include="wwwroot\lib\jquery\" />
     <Folder Include="wwwroot\lib\jquery\dist\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\001knight.jpg" />
+    <None Include="wwwroot\Images\002knight.jpg" />
+    <None Include="wwwroot\Images\003hobbit.jpg" />
+    <None Include="wwwroot\Images\004topgun.jpg" />
+    <None Include="wwwroot\Images\005topgun.jpg" />
+    <None Include="wwwroot\Images\01 TopGun.jpg" />
+    <None Include="wwwroot\Images\01 TopGun.jpg.jpg" />
+    <None Include="wwwroot\Images\02 Talk to Me.jpg" />
+    <None Include="wwwroot\Images\02 Talk to Me.jpg.jpg" />
+    <None Include="wwwroot\Images\03 Don%27t Worry Darling.jpg" />
+    <None Include="wwwroot\Images\03 Don%27t Worry Darling.jpg.jpg" />
+    <None Include="wwwroot\Images\04 The Batman.jpg" />
+    <None Include="wwwroot\Images\06 The Godfather.jpg" />
+    <None Include="wwwroot\Images\07 The Dark Knight.jpg" />
+    <None Include="wwwroot\Images\07 The Dark Knight.jpg.jpg" />
+    <None Include="wwwroot\Images\09 the Hobbit.jpg" />
+    <None Include="wwwroot\Images\10 Pulp Fiction.jpg" />
+    <None Include="wwwroot\Images\10 Pulp Fiction.jpg.jpg" />
+    <None Include="wwwroot\Images\11 Forrest Gump.jpg" />
+    <None Include="wwwroot\Images\12 Barbi.jpg" />
   </ItemGroup>
 
 </Project>

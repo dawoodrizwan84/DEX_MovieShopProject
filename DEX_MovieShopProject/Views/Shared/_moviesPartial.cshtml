@@ -1,0 +1,19 @@
+﻿@model IEnumerable<DEX_MovieShopProject.Models.Movie>
+
+<div class="row justify-content-center">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-2">
+            <a asp-controller="Movie" asp-action="Details" asp-route-id=""> 
+                <img src="@item.ImgUrl" class="bd-placeholder-img card-img-top" height="200" alt="...">
+                <div class="card-body">
+                    <p class="fw-normal">@item.Title</p>
+                <p>@item.Price<small class="text-body-secondary fw-light">kr</small></p>
+                    <p><a class="btn btn-secondary" href="#">View Details</a></p>
+                </div>
+          </a> 
+        </div>
+    }
+</div> 
+
