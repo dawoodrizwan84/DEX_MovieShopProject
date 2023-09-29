@@ -13,6 +13,9 @@ namespace DEX_MovieShopProject.Controllers
         private readonly IMovieService _movieService;
        
 
+        private readonly IMovieService _movieService;
+        private readonly ICustomerService _customerService;
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -20,6 +23,7 @@ namespace DEX_MovieShopProject.Controllers
 
         public IActionResult Index()
         {
+
             //var movies = _movieService.GetMovies();
 
             //FrontPageVM frontPage = new FrontPageVM();
@@ -41,6 +45,13 @@ namespace DEX_MovieShopProject.Controllers
             //frontPage.TopSellerMovies = movies;
 
             return View(/*frontPage*/);
+
+            //FrontPageVM frontPage = new FrontPageVM();
+            //frontPage.CheapMovies = _movieService.GetMovies();
+            //frontPage.TopFiveMovies = _movieService.GetMovies();
+
+            return View();
+
         }
 
         public IActionResult Privacy()

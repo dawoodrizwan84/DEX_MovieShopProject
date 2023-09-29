@@ -4,8 +4,8 @@ namespace DEX_MovieShopProject.Models
 {
     public class Movie
     {
-        //[Key]
-        [Required]
+      
+       
         public int Id { get; set; }
 
         [Display(Name = "Movie Name")]

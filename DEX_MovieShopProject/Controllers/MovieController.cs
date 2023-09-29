@@ -1,4 +1,7 @@
-﻿using DEX_MovieShopProject.Models;
+using DEX_MovieShopProject.Models;
+using DEX_MovieShopProject.Data;
+using DEX_MovieShopProject.Models;
+using DEX_MovieShopProject.Models.ViewModels;
 using DEX_MovieShopProject.Service.Abstract;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,13 +40,33 @@ namespace DEX_MovieShopProject.Controllers
         {
             _movieService.CreateMovie(newMovie);
 
+
            return RedirectToAction("Index");
+
+
+            return RedirectToAction("Index", "Movie");
 
         }
 
         public IActionResult Edit()
         {
+
             return View();
+
+            var movieList = _movieService.GetMovies();
+
+            return View(movieList);
+        }
+
+        [HttpPost]
+        //[Route("ed")]
+        public IActionResult Edit(Movie newMovie)
+        {
+            _movieService.UppMovie(newMovie);
+
+            return View(newMovie);
+
+
         }
 
         [HttpPost]
