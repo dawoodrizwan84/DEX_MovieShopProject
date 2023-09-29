@@ -13,7 +13,7 @@ namespace DEX_MovieShopProject.Controllers
         private readonly IMovieService _movieService;
        
 
-        private readonly IMovieService _movieService;
+       
         private readonly ICustomerService _customerService;
 
         public HomeController(ILogger<HomeController> logger)
