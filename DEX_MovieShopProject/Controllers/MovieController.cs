@@ -44,44 +44,31 @@ namespace DEX_MovieShopProject.Controllers
            return RedirectToAction("Index");
 
 
-            return RedirectToAction("Index", "Movie");
-
-        }
+       }
 
         public IActionResult Edit()
         {
 
             return View();
-
-            var movieList = _movieService.GetMovies();
-
-            return View(movieList);
         }
 
         [HttpPost]
         //[Route("ed")]
         public IActionResult Edit(Movie newMovie)
         {
-            _movieService.UppMovie(newMovie);
-
-            return View(newMovie);
-
-
-        }
-
-        [HttpPost]
-        //[Route("ed")]
-        public IActionResult Edit(Movie newMovie)
-        {
-
             _movieService.UpdateMovie(newMovie);
 
             return View(newMovie);
 
-           
+
         }
 
-       
+        public IActionResult Delete() 
+        {
+            return View();
+        }
+      
+           
         public IActionResult Delete(Movie newMovie)
         {
 
