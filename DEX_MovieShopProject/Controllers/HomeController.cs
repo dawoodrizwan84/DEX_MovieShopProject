@@ -3,6 +3,7 @@ using DEX_MovieShopProject.Models.ViewModels;
 using DEX_MovieShopProject.Service.Abstract;
 using DEX_MovieShopProject.Services.Abstract;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace DEX_MovieShopProject.Controllers
@@ -25,6 +26,10 @@ namespace DEX_MovieShopProject.Controllers
             _movieService = movieService;
         }
 
+        public IActionResult Index(string searchString) 
+        {
+           return View();
+        }
         public IActionResult Index()
         {
 

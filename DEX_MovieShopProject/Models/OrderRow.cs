@@ -18,6 +18,7 @@ namespace DEX_MovieShopProject.Models
 
         [DisplayName("Price")]
         [Required]
+
         public decimal Price { get; set; }
 
         public virtual Movie Movie { get; set; }   

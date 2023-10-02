@@ -34,11 +34,11 @@ namespace DEX_MovieShopProject.Services.Implementation
 
         }
 
-        public bool UpdateCustomer(Customer newMovie)
+        public bool UpdateCustomer(Customer newCustomer)
         {
             try
             {
-                _db.Customers.Update(newMovie);
+                _db.Customers.Update(newCustomer);
                 _db.SaveChanges();
                 return true;
 

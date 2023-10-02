@@ -28,6 +28,7 @@ namespace DEX_MovieShopProject
             builder.Services.AddScoped<IMovieService, MovieService>();
 
             builder.Services.AddScoped<ICustomerService, CustomerService>();
+        
 
             var app = builder.Build();
 

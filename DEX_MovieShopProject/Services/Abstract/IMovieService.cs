@@ -11,11 +11,11 @@ namespace DEX_MovieShopProject.Service.Abstract
 
         bool UpdateMovie(Movie newMovie);
 
-       
-
         Movie GetMovieById(int id);
 
         bool DeleteMovie(int id);
+
+        IEnumerable<Movie> Search(string searchMovie);
 
 
     }

@@ -53,13 +53,13 @@ namespace DEX_MovieShopProject.Service.Implementation
             }
         }
 
-     
-        public bool DeleteMovie(int id) 
+
+        public bool DeleteMovie(int id)
         {
             try
             {
                 var data = this.GetMovieById(id);
-                if (data == null) 
+                if (data == null)
                 {
                     return false;
                 }
@@ -72,6 +72,20 @@ namespace DEX_MovieShopProject.Service.Implementation
 
                 return false;
             }
+        }
+
+        public IEnumerable<Movie> Search(string searchMovie = null)
+        {
+            if (string.IsNullOrEmpty(searchMovie)) 
+            {
+                return _db.Movies;
+            }
+            return _db.Movies.Where(m => m.Title.Contains(searchMovie)).ToList();
+
+
+
+
+
         }
 
     }

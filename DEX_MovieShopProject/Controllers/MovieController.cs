@@ -26,6 +26,7 @@ namespace DEX_MovieShopProject.Controllers
             return View(movieList);
         }
 
+        
         public IActionResult Create()
         {
 
