@@ -7,16 +7,15 @@ namespace DEX_MovieShopProject.Service.Abstract
 
         List<Movie> GetMovies();
 
-        void CreateMovie(Movie newMovie);
+         void CreateMovie(Movie newMovie);
 
-        void UpdateMovie(Movie newMovie);
+        bool UpdateMovie(Movie newMovie);
 
-        void DeleteMovie(Movie newMovie);
-
-        //void Data(int id, Movie newMovie);
+       
 
         Movie GetMovieById(int id);
 
+        bool DeleteMovie(int id);
 
 
     }

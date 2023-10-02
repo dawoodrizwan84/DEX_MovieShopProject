@@ -1,7 +1,4 @@
 using DEX_MovieShopProject.Models;
-using DEX_MovieShopProject.Data;
-using DEX_MovieShopProject.Models;
-using DEX_MovieShopProject.Models.ViewModels;
 using DEX_MovieShopProject.Service.Abstract;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,11 +18,11 @@ namespace DEX_MovieShopProject.Controllers
 
 
 
-        [Route("MI")]
-        public IActionResult Index()
+      
+        public IActionResult Index() //List
         {
             var movieList = _movieService.GetMovies();
-
+            
             return View(movieList);
         }
 
@@ -46,35 +43,36 @@ namespace DEX_MovieShopProject.Controllers
 
        }
 
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
-
-            return View();
+            var record = _movieService.GetMovieById(id);
+            return View(record);
         }
 
         [HttpPost]
         //[Route("ed")]
         public IActionResult Edit(Movie newMovie)
         {
-            _movieService.UpdateMovie(newMovie);
+            if (!ModelState.IsValid)
+            {
+               return View(newMovie);
+            }
 
+            var result = _movieService.UpdateMovie(newMovie);
+
+            if (result) 
+            {
+                return RedirectToAction("Index");
+            }
+            TempData["msg"] = "Error has occured on server side.";
             return View(newMovie);
 
-
         }
 
-        public IActionResult Delete() 
+        
+        public IActionResult Delete(int id)
         {
-            return View();
-        }
-      
-           
-        public IActionResult Delete(Movie newMovie)
-        {
-
-            _movieService.DeleteMovie(newMovie);
-
-
+            var result = _movieService.DeleteMovie(id);
             return RedirectToAction("Index");
         }
 

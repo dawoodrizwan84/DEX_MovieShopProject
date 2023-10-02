@@ -4,6 +4,7 @@ using DEX_MovieShopProject.Models;
 using DEX_MovieShopProject.Service.Abstract;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging.Abstractions;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace DEX_MovieShopProject.Service.Implementation
 {
@@ -27,7 +28,7 @@ namespace DEX_MovieShopProject.Service.Implementation
 
         public Movie GetMovieById(int id)
         {
-            return _db.Movies.Where(m => m.Id == id).FirstOrDefault();
+            return _db.Movies.Find(id);
         }
         public void CreateMovie(Movie newMovie)
         {
@@ -36,33 +37,42 @@ namespace DEX_MovieShopProject.Service.Implementation
 
         }
 
-        public void UpdateMovie(Movie newMovie)
+        public bool UpdateMovie(Movie newMovie)
         {
-            _db.Movies.Update(newMovie);
-            _db.SaveChanges();
+            try
+            {
+                _db.Movies.Update(newMovie);
+                _db.SaveChanges();
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
         }
 
-        public void DeleteMovie(Movie newMovie)
+     
+        public bool DeleteMovie(int id) 
         {
-            _db.Remove(newMovie);
-            _db.SaveChanges();
+            try
+            {
+                var data = this.GetMovieById(id);
+                if (data == null) 
+                {
+                    return false;
+                }
+                _db.Movies.Remove(data);
+                _db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
         }
-
-
-
-        //public void Data(int id, Movie newMovie)
-        //{
-
-        //    var movieInDb = _db.Movies.FirstOrDefault(m => m.Id == newMovie.Id);
-
-        //    if (movieInDb != null)
-        //    {
-
-        //        movieInDb.Title = newMovie.Title;
-
-        //        _db.SaveChanges();
-        //    }
-        //}
 
     }
 }

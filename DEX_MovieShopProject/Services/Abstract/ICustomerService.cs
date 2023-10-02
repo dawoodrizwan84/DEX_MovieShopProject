@@ -5,12 +5,15 @@ namespace DEX_MovieShopProject.Services.Abstract
 {
     public interface ICustomerService
     {
-        
-     
 
-        public void CreateCustomer(Customer newCustomer);
-        
+        List<Customer> GetCustomer();
+        void CreateCustomer(Customer newCustomer);
 
+        bool UpdateCustomer(Customer newCustomer);
+
+        Customer GetCustomerById(int id);
+
+        bool DeleteCustomer(int id);
 
     }
 }

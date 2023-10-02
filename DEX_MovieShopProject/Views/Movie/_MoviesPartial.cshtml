@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Movie>
+
+@foreach (var item in Model)
+{
+    <div class="card col-md-2 m-1">
+        <a asp-controller="Movie" asp-action="Details" asp-route-id="@item.Id">
+            <img src="~/Images/@item.ImgUrl" class="card-img-top" alt="...">
+            <div class="card-body">
+                <div class="card-title card-text">@item.Title</div>
+                @*<h5 class="card-title">@item.Director</h5> *@
+                @* <p class="card-text">@item.Description</p> *@
+                <h6>SEK @item.Price</h6>
+            </div>
+        </a>
+    </div>
+}
