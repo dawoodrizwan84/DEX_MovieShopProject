@@ -23,7 +23,6 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Data\Script\" />
-    <Folder Include="Models\" />
     <Folder Include="wwwroot\js\" />
     <Folder Include="wwwroot\lib\bootstrap\" />
     <Folder Include="wwwroot\lib\bootstrap\dist\js\" />
@@ -47,11 +46,9 @@
     <None Include="wwwroot\Images\03 Don%27t Worry Darling.jpg" />
     <None Include="wwwroot\Images\03 Don%27t Worry Darling.jpg.jpg" />
     <None Include="wwwroot\Images\04 The Batman.jpg" />
-    <None Include="wwwroot\Images\05  The Shawshank Redemption.jpg" />
     <None Include="wwwroot\Images\06 The Godfather.jpg" />
     <None Include="wwwroot\Images\07 The Dark Knight.jpg" />
     <None Include="wwwroot\Images\07 The Dark Knight.jpg.jpg" />
-    <None Include="wwwroot\Images\08 the lord of the rings.jpg" />
     <None Include="wwwroot\Images\09 the Hobbit.jpg" />
     <None Include="wwwroot\Images\10 Pulp Fiction.jpg" />
     <None Include="wwwroot\Images\10 Pulp Fiction.jpg.jpg" />

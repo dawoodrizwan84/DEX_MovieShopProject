@@ -3,39 +3,47 @@
 @{
     ViewData["Title"] = "Index";
 }
+<br />
 
-<h1>Index</h1>
+<h1>Movies List</h1>
+
+@* <div class="container">
+    <partial name="_MoviesPartial" model="Model" />
+</div> *@
+
 
 
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @*  <a asp-action="Create">Create New</a> *@
 </p>
 
-
-<table class="table">
+<table class="table table-bordered table-active">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
+
+            @* <th style="color:#FAA7A2">
+            @Html.DisplayNameFor(model => model.Id)
+            </th> *@
+            <th style="color:#FAA7A2">
                 @Html.DisplayNameFor(model => model.Title)
+
             </th>
-            <th>
+            <th style="color:#FAA7A2">
                 @Html.DisplayNameFor(model => model.Director)
             </th>
-            <th>
+            <th style="color:#FAA7A2">
                 @Html.DisplayNameFor(model => model.ReleaseYear)
             </th>
-            <th>
+            <th style="color:#FAA7A2">
                 @Html.DisplayNameFor(model => model.Price)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
+            @* <th>
+            @Html.DisplayNameFor(model => model.Description)
+            </th> *@
+            <th style="color:#FAA7A2">
                 @Html.DisplayNameFor(model => model.ImgUrl)
+
             </th>
             <th></th>
         </tr>
@@ -44,11 +52,12 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
+                @*  <td>
+            @Html.DisplayFor(modelItem => item.Id)
+            </td> *@
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
+
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Director)
@@ -59,16 +68,19 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
+                @* <td>
+            @Html.DisplayFor(modelItem => item.Description)
+            </td> *@
                 <td>
-                    @Html.DisplayFor(modelItem => item.Description)
+                    @* @Html.DisplayFor(modelItem => item.ImgUrl) *@
+
+
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ImgUrl)
-                </td>
-                <td>
+
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @* <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> *@
                 </td>
             </tr>
         }

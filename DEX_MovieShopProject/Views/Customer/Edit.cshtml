@@ -1,0 +1,90 @@
+﻿@model DEX_MovieShopProject.Models.Customer
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-md6">
+            <h3>Edit Customer</h3>
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <div class="form-group">
+
+                        <label asp-for="Id">Id</label>
+                        <input type="text" class="form-control" asp-for="Id" />
+                        <span asp-validation-for="Id" class="text-danger"></span>
+                    </div>
+                    <label asp-for="FirstName">First Name <span style="color:red">*</span></label>
+                    <input type="text" class="form-control" asp-for="FirstName" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName">Last Name <span style="color:red">*</span></label>
+                    <input type="text" class="form-control" asp-for="LastName" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BillingAddress">Billing Address </label>
+                    <input type="text" class="form-control" asp-for="BillingAddress" />
+                    <span asp-validation-for="BillingAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BillingZip">Billing Zip </label>
+                    <input type="text" class="form-control" asp-for="BillingZip" />
+                    <span asp-validation-for="BillingZip" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BillingCity">Billing City</label>
+                    <input type="text" class="form-control" asp-for="BillingCity" />
+                    <span asp-validation-for="BillingCity" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DeliveryAddress">Delivery Address</label>
+                    <input type="text" class="form-control" asp-for="DeliveryAddress" />
+                    <span asp-validation-for="DeliveryAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DeliveryZip">Delivery Zip</label>
+                    <input type="text" class="form-control" asp-for="DeliveryZip" />
+                    <span asp-validation-for="DeliveryZip" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DeliveryCity">Delivery City</label>
+                    <input type="text" class="form-control" asp-for="DeliveryCity" />
+                    <span asp-validation-for="DeliveryCity" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmailAddress">EmailAddress</label>
+                    <input type="text" class="form-control" asp-for="EmailAddress" />
+                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNo">PhoneNo</label>
+                    <input type="text" class="form-control" asp-for="PhoneNo" />
+                    <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                </div>
+                
+
+
+                @if (TempData["msg"] != null)
+                {
+                    <div class="form-group">
+                        @TempData["msg"]
+                    </div>
+                }
+                <div class="form-group pt-3">
+                    <button type="submit" class="btn btn-dark m-1">Save</button>
+                    <a href="/Customer/Edit" class="btn btn-primary m-1">List</a>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

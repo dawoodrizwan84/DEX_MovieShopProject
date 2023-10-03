@@ -16,41 +16,48 @@ namespace DEX_MovieShopProject.Controllers
        
         private readonly ICustomerService _customerService;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IOrderService _orderService;
+
+        public HomeController(ILogger<HomeController> logger, IMovieService movieService,ICustomerService customerService, IOrderService orderService)
         {
             _logger = logger;
+            _movieService=movieService;
+            _customerService=customerService;
+            _orderService=orderService;
         }
 
         public IActionResult Index()
         {
 
-            //var movies = _movieService.GetMovies();
+            var movies = _movieService.GetMovies();
 
-            //FrontPageVM frontPage = new FrontPageVM();
+            FrontPageVM frontPage = new FrontPageVM();
 
-            //frontPage.TopFiveMovies = _movieService.GetMovies();
+            frontPage.TopFiveMovies = _movieService.GetMovies();
 
-            //frontPage.CheapMovies = movies
-            //    .OrderBy(m => m.Price)
-            //    .Take(5).ToList();
+            frontPage.CheapMovies = movies
+                .OrderBy(m => m.Price)
+                .Take(5).ToList();
 
-            //frontPage.NewestMovies = movies
-            //   .OrderByDescending(m => m.ReleaseYear)
-            //   .Take(5).ToList();
+            frontPage.NewestMovies = movies
+               .OrderByDescending(m => m.ReleaseYear)
+               .Take(5).ToList();
 
-            //frontPage.OldestMovies = movies
-            //  .OrderBy(m => m.ReleaseYear)
-            //  .Take(5).ToList();
+            frontPage.OldestMovies = movies
+              .OrderBy(m => m.ReleaseYear)
+              .Take(5).ToList();
 
-            //frontPage.TopSellerMovies = movies;
+            frontPage.AllMovies = movies
+                .OrderByDescending(m => m.Title) 
+                //.Take(Range.All)
+                .Take(6)
+                .ToList();
 
-            return View(/*frontPage*/);
 
-            //FrontPageVM frontPage = new FrontPageVM();
-            //frontPage.CheapMovies = _movieService.GetMovies();
-            //frontPage.TopFiveMovies = _movieService.GetMovies();
+            frontPage.TopSellerMovies = movies;
 
-            return View();
+            return View(frontPage);
+
 
         }
 
