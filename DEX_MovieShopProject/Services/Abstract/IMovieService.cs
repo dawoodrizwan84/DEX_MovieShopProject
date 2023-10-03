@@ -9,14 +9,11 @@ namespace DEX_MovieShopProject.Service.Abstract
 
         void CreateMovie(Movie newMovie);
 
-        void UpdateMovie(Movie newMovie);
-
-        void DeleteMovie(Movie newMovie);
-
-        //void Data(int id, Movie newMovie);
+        bool UpdateMovie(Movie newMovie);
 
         Movie GetMovieById(int id);
 
+        bool DeleteMovie(int id);
 
 
     }
