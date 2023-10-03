@@ -13,7 +13,7 @@
 
                 </div>
             </a>
-            <a asp-controller="Movie" asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary">View Details</a>
+            <button type="button" class="btn btn-secondary m-2" onclick="Add(@item.Id)">Add to Cart</button>
         </div>
     }
 </div>

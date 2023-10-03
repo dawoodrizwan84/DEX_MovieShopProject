@@ -17,10 +17,7 @@ namespace DEX_MovieShopProject.Controllers
             _logger = logger;
             _orderService = orderService;
         }
-        public OrderController()
-        {
-            
-        }
+        
 
         [Route("OI")]
         public IActionResult Index()
