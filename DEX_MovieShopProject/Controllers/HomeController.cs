@@ -26,10 +26,7 @@ namespace DEX_MovieShopProject.Controllers
             _movieService = movieService;
         }
 
-        public IActionResult Index(string searchString) 
-        {
-           return View();
-        }
+      
         public IActionResult Index()
         {
 
@@ -63,6 +60,23 @@ namespace DEX_MovieShopProject.Controllers
             return View(movies);
 
         }
+
+        //public IActionResult Search(String query)
+        //{
+        //    var movies = _movieService.GetMovies();
+
+        //    FrontPageVM frontPage = new FrontPageVM();
+
+        //    frontPage.SearchMovie = movies
+        //        .Where(m =>
+        //    m.Title.Contains() || // Case-insensitive search by title
+        //    m.Director.Contains() || // Case-insensitive search by director
+        //    m.Price.ToString().Contains() // Case-insensitive search by price (converted to string)
+        //)
+        //.ToList();
+
+        //    return View("SearchResults");
+        //}
 
         public IActionResult Privacy()
         {

@@ -15,7 +15,7 @@ namespace DEX_MovieShopProject.Service.Abstract
 
         bool DeleteMovie(int id);
 
-        IEnumerable<Movie> Search(string searchMovie);
+
 
 
     }

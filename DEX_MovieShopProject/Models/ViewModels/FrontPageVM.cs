@@ -17,5 +17,6 @@ namespace DEX_MovieShopProject.Models.ViewModels
 
         public Order TotalOrder { get; set; }
         
+        public Movie SearchMovie { get; set; }
     }
 }

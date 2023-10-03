@@ -74,19 +74,7 @@ namespace DEX_MovieShopProject.Service.Implementation
             }
         }
 
-        public IEnumerable<Movie> Search(string searchMovie = null)
-        {
-            if (string.IsNullOrEmpty(searchMovie)) 
-            {
-                return _db.Movies;
-            }
-            return _db.Movies.Where(m => m.Title.Contains(searchMovie)).ToList();
-
-
-
-
-
-        }
+      
 
     }
 }
