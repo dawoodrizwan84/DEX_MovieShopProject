@@ -18,7 +18,7 @@ namespace DEX_MovieShopProject
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddSession();
 
             builder.Services.AddDbContext<AppDbContext>(
             o => o
@@ -28,7 +28,9 @@ namespace DEX_MovieShopProject
             builder.Services.AddScoped<IMovieService, MovieService>();
 
             builder.Services.AddScoped<ICustomerService, CustomerService>();
-        
+
+            builder.Services.AddScoped<IOrderService, OrderService>();
+
 
             var app = builder.Build();
 
@@ -43,6 +45,7 @@ namespace DEX_MovieShopProject
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 

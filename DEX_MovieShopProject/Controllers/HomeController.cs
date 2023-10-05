@@ -2,6 +2,7 @@
 using DEX_MovieShopProject.Models.ViewModels;
 using DEX_MovieShopProject.Service.Abstract;
 using DEX_MovieShopProject.Services.Abstract;
+using DEX_MovieShopProject.Services.Implementation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -11,26 +12,27 @@ namespace DEX_MovieShopProject.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+
         private readonly IMovieService _movieService;
-
-
-
         private readonly ICustomerService _customerService;
+        //private readonly IOrderService _orderService;
 
         public HomeController(ILogger<HomeController> logger,
             IMovieService movieService,
-            ICustomerService  customerService )
+            ICustomerService  customerService
+            /*IOrderService orderService*/)
         {
             _logger = logger;
             _customerService = customerService;
             _movieService = movieService;
+            //_orderService = orderService;
         }
 
       
         public IActionResult Index()
         {
 
-            
+
             var movies = _movieService.GetMovies();
 
             FrontPageVM frontPage = new FrontPageVM();
@@ -49,15 +51,16 @@ namespace DEX_MovieShopProject.Controllers
               .OrderBy(m => m.ReleaseYear)
               .Take(5).ToList();
 
+            frontPage.AllMovies = movies
+                .OrderByDescending(m => m.Title)
+                //.Take(Range.All)
+                .Take(6)
+                .ToList();
+
             frontPage.TopSellerMovies = movies;
 
+            return View(frontPage);
 
-            //FrontPageVM frontPage = new FrontPageVM();
-            //frontPage.CheapMovies = _movieService.GetMovies();
-            //frontPage.TopFiveMovies = _movieService.GetMovies();
-
-
-            return View(movies);
 
         }
 

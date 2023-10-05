@@ -1,16 +1,22 @@
-﻿@model IEnumerable<Movie>
+﻿@model IEnumerable<DEX_MovieShopProject.Models.Movie>
 
-<div class="row offset-lg-1 text-center justify-content-center">
+<div class="row justify-content-center">
 
-    @*foreach(var item in Model)
+    @foreach (var item in Model)
     {
-        <div class="card col-md-2 m-1">
-            <a asp-controller="Movie" asp-action="Details" asp-route-id=""></a>
-            <img src="" class="card-img-top" alt="...">
-            <div class="card-body">
-                <div class="card-title card-text">Title</div>
-                <h6>SEK price</h6>
-            </div>
+        <div class="col-lg-2">
+            <a asp-controller="Movie" asp-action="Details" asp-route-id="@item.Id">
+                <img src="@item.ImgUrl" class="bd-placeholder-img card-img-top" height="200" alt="...">
+                <div class="card-body">
+                    <p class="fw-normal">@item.Title</p>
+                    <p>@item.Price<small class="text-body-secondary fw-light">kr</small></p>
+
+                </div>
+               
+            </a>
+            <button type="button" class="btn btn-sm" onclick="Add(@item.Id)">Add to Cart</button>
+
+            <a asp-controller="Movie" asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary">View Details</a>
         </div>
-    }*@
+    }
 </div>

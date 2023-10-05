@@ -6,11 +6,14 @@ namespace DEX_MovieShopProject.Services.Abstract
     {
         List<Order> GetOrders();
 
-        void CreateOrder (Order order);
-        void UpdateOrder (Order order);
-        void DeleteOrder (Order order);
-        void UpdateOrderStatus (Order order);
-       
+        void CreateOrder(Order newOrder);
+        bool UpdateOrder(Order newOrder);
+
+        Order GetOrderById(int id);
+        bool DeleteOrder(int id);
+
+        
+
 
 
     }
