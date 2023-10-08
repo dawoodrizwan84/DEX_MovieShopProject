@@ -1,13 +1,19 @@
 ﻿using DEX_MovieShopProject.Helpers;
 using DEX_MovieShopProject.Models;
 using DEX_MovieShopProject.Models.ViewModels;
+using DEX_MovieShopProject.Services.Abstract;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DEX_MovieShopProject.Controllers
 {
     public class OrderController : Controller
     {
+        private readonly IOrderService _orderService;
 
+        public OrderController(IOrderService orderService)
+        {
+            _orderService = orderService;
+        }
         public IActionResult Index()
         {
             return View();
@@ -22,6 +28,7 @@ namespace DEX_MovieShopProject.Controllers
                 HttpContext.Session.Set<List<int>>("movieIdList", new List<int>());
 
             }
+
             var movieIdsList = HttpContext.Session.Get<List<int>>("movieIdList");
             movieIdsList.Add(Convert.ToInt32(id));
 
@@ -33,23 +40,34 @@ namespace DEX_MovieShopProject.Controllers
 
         public IActionResult ShoppingCart()
         {
-            var cart = new CartVM();
+            var movieIdsList = HttpContext.Session.Get<List<int>>("movieIdList");
+            var queryResult = _orderService.GetCartVM(movieIdsList);
 
-            CartMovieVM newCartMovie = new CartMovieVM();
-            newCartMovie.Movie = new Movie() { Title = "First title" };
-            newCartMovie.NoOfCopies = 2;
-            newCartMovie.SubTotal = 200;
-            cart.CartMovies.Add(newCartMovie);
 
-            CartMovieVM newCartMovie2 = new CartMovieVM();
-            newCartMovie2.Movie = new Movie() { Title = "Second title" };
-            newCartMovie2.NoOfCopies = 2;
-            newCartMovie2.SubTotal = 400;
-            cart.CartMovies.Add(newCartMovie2);
 
-            cart.Total = 600;
+            //---HardCodded-- -
+             
+            //var carta = new CartVM();
 
-            return View(cart);
+            //CartMovieVM newCartMovie = new CartMovieVM();
+            //newCartMovie.Movie = new Movie() { Title = "First title", Price = 200 };
+            //newCartMovie.NoOfCopies = 2;
+            //newCartMovie.SubTotal = 200;
+            //cart.CartMovies.Add(newCartMovie);
+
+            //CartMovieVM newCartMovie2 = new CartMovieVM();
+            //newCartMovie2.Movie = new Movie() { Title = "Second title", Price = 200 };
+            //newCartMovie2.NoOfCopies = 2;
+            //newCartMovie2.SubTotal = 400;
+            //cart.CartMovies.Add(newCartMovie2);
+
+            //cart.Total = 600;
+
+            return View(queryResult);
+
+            
+
+
         }
     }
 }

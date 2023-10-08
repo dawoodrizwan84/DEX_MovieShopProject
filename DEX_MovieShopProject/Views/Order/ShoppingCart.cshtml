@@ -1,5 +1,12 @@
-﻿
-<section class="h-100" style="background-color: #eee;">
+﻿@model DEX_MovieShopProject.Models.ViewModels.CartVM
+
+@{
+    Layout = "_Layout";
+}
+
+
+
+<section class="h-100" style="background-color: gray;">
     <div class="container h-100 py-5">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-10">
@@ -8,154 +15,54 @@
                     <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
                     <div>
                         <p class="mb-0">
-                            <span class="text-muted">Sort by:</span> <a href="#!" class="text-body">
-                                price <i class="fas fa-angle-down mt-1"></i>
+                            <span class="text-muted"></span> <a href="#!" class="text-body">
+                                <i class="fa fa-plus"></i>
                             </a>
                         </p>
                     </div>
                 </div>
 
-                <div class="card rounded-3 mb-4">
-                    <div class="card-body p-4">
-                        <div class="row d-flex justify-content-between align-items-center">
-                            <div class="col-md-2 col-lg-2 col-xl-2">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                     class="img-fluid rounded-3" alt="Cotton T-shirt">
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-3">
-                                <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                                <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                    <i class="fas fa-minus"></i>
-                                </button>
+                @foreach (var item in Model.CartMovies)
+                {
+                    <div class="card rounded-3 mb-4">
+                        <div class="card-body p-4">
+                            <div class="row d-flex justify-content-between align-items-center">
+                                <div class="col-md-2 col-lg-2 col-xl-2">
+                                    <img src="~/Images/@item.Movie.ImgURL"
+                                         class="img-fluid rounded-3" alt="Image">
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-xl-3">
+                                    <p class="lead fw-normal mb-2" style="color:black">@item.Movie.Title</p>
+                                    <p><span class="text-muted" style="color:black">Price: </span>@item.Movie.Price</p>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                    <button class="btn btn-link px-2"
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                        <i class="fas fa-minus">-</i>
+                                    </button>
 
-                                <input id="form1" min="0" name="quantity" value="2" type="number"
-                                       class="form-control form-control-sm" />
+                                    <input id="form1" min="0" name="quantity" value="" type="number"
+                                           class="form-control form-control-sm" />
 
-                                <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                <h5 class="mb-0" style="color:green">SEK 499.00</h5>
-                            </div>
-                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                                    <button class="btn btn-link px-2"
+                                            onclick="this.parentNode.querySelector('input[type =number ]').stepUp()">
+                                        <i class="qty-inc qty-btn qty-right" style="color:green" onclick="incrementQuantity()">+</i>
+                                    </button>
+                                </div>
+                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                    <h5 class="mb-0" style="color:green">SEK @item.SubTotal</h5>
+                                </div>
+                                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                    <a href="#!" class="text-danger"><i class="fa fa-trash fa-lg"></i><svg viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M154 260h568v700H154z" fill="#FF3B30"></path><path d="M624.428 261.076v485.956c0 57.379-46.737 103.894-104.391 103.894h-362.56v107.246h566.815V261.076h-99.864z" fill="#030504"></path><path d="M320.5 870.07c-8.218 0-14.5-6.664-14.5-14.883V438.474c0-8.218 6.282-14.883 14.5-14.883s14.5 6.664 14.5 14.883v416.713c0 8.219-6.282 14.883-14.5 14.883zM543.5 870.07c-8.218 0-14.5-6.664-14.5-14.883V438.474c0-8.218 6.282-14.883 14.5-14.883s14.5 6.664 14.5 14.883v416.713c0 8.219-6.282 14.883-14.5 14.883z" fill="#152B3C"></path><path d="M721.185 345.717v-84.641H164.437z" fill="#030504"></path><path d="M633.596 235.166l-228.054-71.773 31.55-99.3 228.055 71.773z" fill="#FF3B30"></path><path d="M847.401 324.783c-2.223 0-4.475-0.333-6.706-1.034L185.038 117.401c-11.765-3.703-18.298-16.239-14.592-27.996 3.706-11.766 16.241-18.288 27.993-14.595l655.656 206.346c11.766 3.703 18.298 16.239 14.592 27.996-2.995 9.531-11.795 15.631-21.286 15.631z" fill="#FF3B30"></path></g></svg></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="card rounded-3 mb-4">
-                    <div class="card-body p-4">
-                        <div class="row d-flex justify-content-between align-items-center">
-                            <div class="col-md-2 col-lg-2 col-xl-2">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                     class="img-fluid rounded-3" alt="Cotton T-shirt">
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-3">
-                                <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                                <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-
-                                <input id="form1" min="0" name="quantity" value="2" type="number"
-                                       class="form-control form-control-sm" />
-
-                                <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                <h5 class="mb-0" style="color:green">SEK 499.00</h5>
-                            </div>
-                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card rounded-3 mb-4">
-                    <div class="card-body p-4">
-                        <div class="row d-flex justify-content-between align-items-center">
-                            <div class="col-md-2 col-lg-2 col-xl-2">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                     class="img-fluid rounded-3" alt="Cotton T-shirt">
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-3">
-                                <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                                <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-
-                                <input id="form1" min="0" name="quantity" value="2" type="number"
-                                       class="form-control form-control-sm" />
-
-                                <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                <h5 class="mb-0" style="color:green">SEK 499.00</h5>
-                            </div>
-                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card rounded-3 mb-4">
-                    <div class="card-body p-4">
-                        <div class="row d-flex justify-content-between align-items-center">
-                            <div class="col-md-2 col-lg-2 col-xl-2">
+                }
 
 
-                                <img src=""
-                                     class="img-fluid rounded-3" alt="Cotton T-shirt">
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-3">
-                                <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                                <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                    <i class="fas fa-minus"></i>
-                                </button>
 
-                                <input id="form1" min="0" name="quantity" value="2" type="number"
-                                       class="form-control form-control-sm" />
 
-                                <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                <h5 class="mb-0" style="color:green">SEK 499.00</h5>
-                            </div>
-                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 @* <div class="card mb-4"> *@
                 @*   <div class="card-body p-4 d-flex flex-row">
@@ -167,13 +74,14 @@
                 </div> *@
 
                 @* </div> *@
-                <button type="button" class="btn btn-outline-green btn-lg ms-3">Total Cost</button>
+
+                <button type="button" class="btn btn-outline-green btn-lg ms-3">Total Cost: @Model.Total</button>
 
                 <div class="card">
-                    <div class="card-body" >
+                    <div class="card-body">
 
                         <a href="/Customer/Create" button type="button" class="btn btn-warning btn-block btn-lg">
-                            Proceed to Pay
+                            Check Out
                         </a>
 
                     </div>

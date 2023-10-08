@@ -1,5 +1,6 @@
 ﻿using DEX_MovieShopProject.Data;
 using DEX_MovieShopProject.Models;
+using DEX_MovieShopProject.Models.ViewModels;
 using DEX_MovieShopProject.Services.Abstract;
 
 namespace DEX_MovieShopProject.Services.Implementation
@@ -69,9 +70,35 @@ namespace DEX_MovieShopProject.Services.Implementation
             }
         }
 
-     
+        public CartVM GetCartVM(List<int> movieIdList)
+        {
+            var uniqueMovies = _db.Movies
+                    .Where(m => movieIdList
+                    .Any(i => i == m.Id));
 
-       
+            var cartMovies = movieIdList.GroupBy(x => x)
+                    .Select(g => new CartMovieVM()
+                    {
+                        Movie = uniqueMovies
+                    .Where(m => m.Id == g.Key)
+                    .FirstOrDefault(),
+                        SubTotal = g.Count() * uniqueMovies
+                    .Where(m => m.Id == g.Key)
+                    .FirstOrDefault().Price
+
+                    }).ToList();
+
+            CartVM cartVM = new CartVM();
+            cartVM.CartMovies = cartMovies;
+            cartVM.Total = cartMovies.Sum(cm => cm.SubTotal);
+
+            return cartVM;
+
+        }
+
+
+
+
     }
 }
 

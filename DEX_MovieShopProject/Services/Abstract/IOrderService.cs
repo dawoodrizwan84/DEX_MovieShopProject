@@ -1,4 +1,5 @@
 ﻿using DEX_MovieShopProject.Models;
+using DEX_MovieShopProject.Models.ViewModels;
 
 namespace DEX_MovieShopProject.Services.Abstract
 {
@@ -12,7 +13,10 @@ namespace DEX_MovieShopProject.Services.Abstract
         Order GetOrderById(int id);
         bool DeleteOrder(int id);
 
-        
+        CartVM GetCartVM(List<int> movieIdsList);
+
+
+
 
 
 

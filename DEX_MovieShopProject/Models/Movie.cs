@@ -33,7 +33,7 @@ namespace DEX_MovieShopProject.Models
         public decimal Price { get; set; }
 
         [Display(Name = "Image")]
-        public string ImgUrl { get; set; }
+        public string ImgURL { get; set; }
 
 
         public virtual ICollection<OrderRow> OrderRows { get; set; }

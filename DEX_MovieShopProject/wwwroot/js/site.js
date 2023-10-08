@@ -22,3 +22,17 @@ function showCart() {
     cartEle.classList.add("showCart");
 }
 
+//function incrementQuantity(movieId) {
+//    $.ajax({
+//        type: 'post',
+//        url: 'Order/AddtoCart',
+//        datatype: 'json',
+//        data: { id: movieId },
+
+//        success: function (count) {
+//            $('#cartCount').html(count);
+//            showCart()
+//        }
+
+//    })
+//}
