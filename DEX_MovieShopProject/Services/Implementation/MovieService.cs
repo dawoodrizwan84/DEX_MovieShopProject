@@ -57,7 +57,7 @@ namespace DEX_MovieShopProject.Service.Implementation
             try
             {
                 var data=this.GetMovieById(id);
-                if(data!=null)
+                if(data==null)
                 {
                     return false;
                 }

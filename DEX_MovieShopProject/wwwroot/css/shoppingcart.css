@@ -1,0 +1,51 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+table {
+    border-collapse: collapse;
+    width: 1000px;
+    margin: 100px auto 0;
+}
+
+
+
+    table tr td {
+        width: 250px;
+        height: 100px;
+        text-align: center;
+    }
+
+    table tr.title td {
+        height: 50px;
+        background: #6f42c1;
+        color: #fff;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    table tr td img {
+        width: 100px;
+        margin-top: 10px;
+    }
+
+    table tr td.number span {
+        display: inline-block;
+        font-size: 14px;
+        text-align: center;
+    }
+
+
+        table tr td.number span.num {
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+        }
+
+.box001 {
+    background-color: #30115e;
+    width: 1000px;
+    margin: 50px auto;
+}

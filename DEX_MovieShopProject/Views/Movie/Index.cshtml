@@ -3,86 +3,45 @@
 @{
     ViewData["Title"] = "Index";
 }
-<br />
 
-<h1>Movies List</h1>
+<link href="~/css/shoppingcart.css" rel="stylesheet" />
 
-@* <div class="container">
-    <partial name="_MoviesPartial" model="Model" />
-</div> *@
+<h1 style="margin-top:100px;">Movies List</h1>
+<section>
 
-
-
-
-<p>
-    @*  <a asp-action="Create">Create New</a> *@
-</p>
-
-<table class="table table-bordered table-active">
-    <thead>
-        <tr>
-
-            @* <th style="color:#FAA7A2">
-            @Html.DisplayNameFor(model => model.Id)
-            </th> *@
-            <th style="color:#FAA7A2">
-                @Html.DisplayNameFor(model => model.Title)
-
-            </th>
-            <th style="color:#FAA7A2">
-                @Html.DisplayNameFor(model => model.Director)
-            </th>
-            <th style="color:#FAA7A2">
-                @Html.DisplayNameFor(model => model.ReleaseYear)
-            </th>
-            <th style="color:#FAA7A2">
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            @* <th>
-            @Html.DisplayNameFor(model => model.Description)
-            </th> *@
-            <th style="color:#FAA7A2">
-                @Html.DisplayNameFor(model => model.ImgUrl)
-
-            </th>
-            <th></th>
+    <table>
+        <tr class="title">
+            <td scope="col">Name</td>
+            <td scope="col">Director</td>
+            <td scope="col">ReleaseYear</td>
+            <td scope="col">Price</td>
+            <td scope="col"></td>
         </tr>
-    </thead>
-    <tbody>
+
         @foreach (var item in Model)
         {
-            <tr>
-                @*  <td>
-            @Html.DisplayFor(modelItem => item.Id)
-            </td> *@
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
+            <tbody>
+                <tr>
+                    <td>
+                        <div>
+                            <img src=~/@Html.DisplayFor(modelItem => item.ImgUrl) alt="@Html.DisplayFor(modelItem => item.Title)" /><br>
+                            <span>@Html.DisplayFor(modelItem => item.Title)</span>
+                        </div>
+                    </td>
+                    <td class="price">@Html.DisplayFor(modelItem => item.Director)</td>
+                    <td class="number">@Html.DisplayFor(modelItem => item.ReleaseYear)</td>
+                    <td class="totalprice">@Html.DisplayFor(modelItem => item.Price)</td>
+                    
+                    <td>
 
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Director)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReleaseYear)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                @* <td>
-            @Html.DisplayFor(modelItem => item.Description)
-            </td> *@
-                <td>
-                    @* @Html.DisplayFor(modelItem => item.ImgUrl) *@
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    </td>
+                </tr>
 
 
-                </td>
-                <td>
-
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    @* <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> *@
-                </td>
-            </tr>
+            </tbody>
         }
-    </tbody>
-</table>
+    </table>
+
+</section>

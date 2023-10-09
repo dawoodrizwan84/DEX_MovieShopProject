@@ -11,11 +11,7 @@ namespace DEX_MovieShopProject.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IMovieService _movieService;
-       
-
-       
         private readonly ICustomerService _customerService;
-
         private readonly IOrderService _orderService;
 
         public HomeController(ILogger<HomeController> logger, IMovieService movieService,ICustomerService customerService, IOrderService orderService)
@@ -33,7 +29,7 @@ namespace DEX_MovieShopProject.Controllers
 
             FrontPageVM frontPage = new FrontPageVM();
 
-            frontPage.TopFiveMovies = _movieService.GetMovies();
+            frontPage.TopFiveMovies = _orderService.GetMostSoldMovies();
 
             frontPage.CheapMovies = movies
                 .OrderBy(m => m.Price)
@@ -48,9 +44,9 @@ namespace DEX_MovieShopProject.Controllers
               .Take(5).ToList();
 
             frontPage.AllMovies = movies
-                .OrderByDescending(m => m.Title) 
-                //.Take(Range.All)
-                .Take(6)
+                .OrderByDescending(m => m.Title)
+                .Take(Range.All)
+                //.Take(6)
                 .ToList();
 
 

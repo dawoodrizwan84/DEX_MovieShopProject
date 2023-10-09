@@ -59,7 +59,7 @@ namespace DEX_MovieShopProject.Services.Implementation
             try 
             {
                 var data = this.GetCustomerById(id);
-                if(data != null)
+                if(data == null)
                 {
                     return false;
                 }
@@ -73,6 +73,16 @@ namespace DEX_MovieShopProject.Services.Implementation
                 return false;
             }
         
+        }
+
+        public bool CheckExists(string email)
+        {
+            return _db.Customers.Any(c => c.EmailAddress == email);
+        }
+
+        public Customer GetCustomer(string email)
+        {
+            return _db.Customers.Where(c=>c.EmailAddress == email).FirstOrDefault();
         }
     }
 }

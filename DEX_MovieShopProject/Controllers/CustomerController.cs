@@ -1,5 +1,6 @@
 ﻿
 using DEX_MovieShopProject.Models;
+using DEX_MovieShopProject.Models.ViewModels;
 using DEX_MovieShopProject.Services.Abstract;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +10,7 @@ namespace DEX_MovieShopProject.Controllers
     {
         private readonly ILogger<CustomerController> _logger;
         private readonly ICustomerService _customerService;
-        public CustomerController(ILogger<CustomerController> logger, ICustomerService customerService) 
+        public CustomerController(ILogger<CustomerController> logger, ICustomerService customerService)
         {
             _logger = logger;
             _customerService = customerService;
@@ -32,6 +33,11 @@ namespace DEX_MovieShopProject.Controllers
         public IActionResult Create(Customer newCustomer)
         {
             _customerService.CreateCustomer(newCustomer);
+            if (TempData["createorder"] is not null)
+            {
+                return RedirectToAction("ConfirmOrder", "Order",new { newCustomer.EmailAddress });
+            }
+
             return RedirectToAction("Index");
         }
 
@@ -70,13 +76,40 @@ namespace DEX_MovieShopProject.Controllers
         {
             var cust = _customerService.GetCustomerById(id);
 
-            if(cust == null)
+            if (cust == null)
             {
                 return NotFound();
             }
 
             return View(cust);
 
+
+
         }
+
+        public IActionResult CheckOut()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CheckOut(string email)
+        {
+            if (_customerService.CheckExists(email)) 
+            {
+                return RedirectToAction("ConfirmOrder","Order", new { email }); 
+            }
+
+            TempData["createorder"] = "yes";
+
+
+            return RedirectToAction("Create");
+        }
+
+        public IActionResult ThankYou()
+        {
+            return View();
+        }
+       
     }
 }

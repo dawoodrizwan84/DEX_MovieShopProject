@@ -4,21 +4,39 @@ using DEX_MovieShopProject.Models;
 using DEX_MovieShopProject.Models.ViewModels;
 using DEX_MovieShopProject.Service.Abstract;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace DEX_MovieShopProject.Controllers
 {
     public class MovieController : Controller
     {
+        private readonly AppDbContext _appDbContext;
 
         private readonly ILogger<MovieController> _logger;
         private readonly IMovieService _movieService;
 
-        public MovieController(ILogger<MovieController> logger, IMovieService movieService)
+        public MovieController(ILogger<MovieController> logger, IMovieService movieService,AppDbContext appDbContext)
         {
             _logger = logger;
             _movieService = movieService;
+            _appDbContext = appDbContext;
         }
 
+        public IActionResult Search(string searchTitle)
+        {
+            
+            var result = _appDbContext.Movies.Where(m => m.Title.Contains(searchTitle) ||
+                                            m.Director.Contains(searchTitle)).ToList();
+
+            if (result.Count == 0)
+            {
+                ViewBag.Empty = "No results for " + searchTitle;
+            }
+
+            ViewBag.Empty = searchTitle;
+
+            return View(result);
+        }
 
 
         [Route("MI")]

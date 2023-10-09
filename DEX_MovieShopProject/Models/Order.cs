@@ -5,6 +5,11 @@ namespace DEX_MovieShopProject.Models
 {
     public class Order
     {
+        public Order()
+        {
+            OrderRows= new List<OrderRow>();
+        }
+        
         [Required]
         public int Id { get; set; }
      

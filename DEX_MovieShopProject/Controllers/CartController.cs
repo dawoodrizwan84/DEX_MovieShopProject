@@ -19,7 +19,7 @@ namespace DEX_MovieShopProject.Controllers
 
 
         [HttpPost]
-        public IActionResult AddToCart(string id)
+        public IActionResult AddtoCart(string id)
         {
             if (HttpContext.Session.Get<List<int>>("movieIdList") == default)
             {
@@ -40,16 +40,19 @@ namespace DEX_MovieShopProject.Controllers
             return View();
         }
 
-        public IActionResult ShoppingCart() 
+        public IActionResult ShoppingCart()
         {
             var cart = new CartVM();
             var movieIdsList = HttpContext.Session.Get<List<int>>("movieIdList");
 
-            CartMovieVM newCartMovie=new CartMovieVM();
-            newCartMovie.Movie= new Movie() { Title = "First title" };
+            CartMovieVM newCartMovie = new CartMovieVM();
+
+            //var queyrResult = _orderService.GetCartVM(movieIdsList);
+
+            newCartMovie.Movie = new Movie() { Title = "First title" };
             newCartMovie.NoOfCopies = 2;
             newCartMovie.SubTotal = 200;
-            
+
             CartMovieVM newCartMovie2 = new CartMovieVM();
             newCartMovie2.Movie = new Movie() { Title = "Second title" };
             newCartMovie2.NoOfCopies = 3;

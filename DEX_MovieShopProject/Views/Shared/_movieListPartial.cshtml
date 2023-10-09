@@ -9,7 +9,7 @@
                 <div class="card border-light mb-3" style="max-width: 25rem;">
                     <div class="card-body">
                         <a asp-controller="Movie" asp-action="Details" asp-route-id="@item.Id">
-                            <img src="@item.ImgUrl" class="bd-placeholder-img card-img-top" height="400" alt="...">
+                            <img src="@item.ImgUrl" class="bd-placeholder-img card-img-top" height="480" alt="@item.Title">
                             <h4 class="card-title">@item.Title</h4>
                             <p class="card-text">Director:@item.Director</p>
                             <p class="card-text">Release Year:@item.ReleaseYear</p>

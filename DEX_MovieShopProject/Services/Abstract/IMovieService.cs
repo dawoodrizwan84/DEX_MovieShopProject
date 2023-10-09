@@ -6,7 +6,6 @@ namespace DEX_MovieShopProject.Service.Abstract
     {
 
         List<Movie> GetMovies();
-
         void CreateMovie(Movie newMovie);
 
         bool UpdateMovie(Movie newMovie);

@@ -9,10 +9,17 @@ namespace DEX_MovieShopProject.Services.Abstract
        List<Customer> GetCustomer();
        void CreateCustomer(Customer newCustomer);
 
+       bool CheckExists(string email);
+
+       Customer GetCustomer(string email);
+
        bool UpdateCustomer(Customer newCustomer);
+
 
        Customer GetCustomerById(int id);
        bool DeleteCustomer(int id);
+
+       
         
 
 
