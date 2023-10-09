@@ -8,7 +8,7 @@
 function Add(movieId) {
     $.ajax({
         type: 'Post',
-        url: 'Order/AddToCart',
+        url: 'Order/AddtoCart',
         dataType: "json",
         data: { id: movieId },
         success: function (count) {
