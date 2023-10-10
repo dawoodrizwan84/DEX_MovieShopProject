@@ -20,6 +20,8 @@ namespace DEX_MovieShopProject.Service.Implementation
 
         }
 
+       
+
         public List<Movie> GetMovies()
         {
             return _db.Movies.ToList();

@@ -25,22 +25,30 @@ function showCart() {
 }
 
 
-function incrementQuantity(movieId) {
+function Remove(movieId) {
     $.ajax({
         type: 'Post',
-        url: 'Order/AddToCart',
+        url: 'Order/RemoveFromCart',
         dataType: "json",
         data: { id: movieId },
         success: function (count) {
             $('#cartCount').html(count);
-            showCart();
+            if (count == 0) {
+                NotShowCart();
+            }
+           
         }
     })
     
 }
 
-
-function decrementQuantity(itemId) {
-    var quantityInput = document.getElementById('quantity-' + itemId);
-    quantityInput.stepDown();
+function NotShowCart()
+{
+    var cartEle = document.getElementById("cartDiv");
+    cartEle.classList.remove("notShowCart");
+    cartEle.classList.add("showCart");
 }
+//function decrementQuantity(itemId) {
+//    var quantityInput = document.getElementById('quantity-' + itemId);
+//    quantityInput.stepDown();
+//}

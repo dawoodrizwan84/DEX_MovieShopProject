@@ -1,4 +1,5 @@
-﻿using DEX_MovieShopProject.Models;
+﻿using DEX_MovieShopProject.Data;
+using DEX_MovieShopProject.Models;
 using DEX_MovieShopProject.Models.ViewModels;
 using DEX_MovieShopProject.Service.Abstract;
 using DEX_MovieShopProject.Services.Abstract;
@@ -11,9 +12,9 @@ namespace DEX_MovieShopProject.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IMovieService _movieService;
-       
 
-       
+
+        
         private readonly ICustomerService _customerService;
 
         private readonly IOrderService _orderService;
@@ -21,10 +22,13 @@ namespace DEX_MovieShopProject.Controllers
         public HomeController(ILogger<HomeController> logger, IMovieService movieService,ICustomerService customerService, IOrderService orderService)
         {
             _logger = logger;
-            _movieService=movieService;
-            _customerService=customerService;
-            _orderService=orderService;
+            _movieService = movieService;
+            _customerService = customerService;
+            _orderService = orderService;
+           
         }
+
+     
 
         public IActionResult Index()
         {
