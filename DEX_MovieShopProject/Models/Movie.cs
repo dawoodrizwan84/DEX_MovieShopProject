@@ -4,6 +4,7 @@ namespace DEX_MovieShopProject.Models
 {
     public class Movie
     {
+       
 
         [Key]
         public int Id { get; set; }

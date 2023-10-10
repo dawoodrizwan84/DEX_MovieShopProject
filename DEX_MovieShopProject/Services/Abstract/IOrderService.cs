@@ -5,10 +5,13 @@ namespace DEX_MovieShopProject.Services.Abstract
 {
     public interface IOrderService
     {
-        
-        //List<Movie> GetMostSoldMovies();
+
+        List<Movie> GetMostSoldMovies();
         CartVM GetCartVM(List<int> movieIdList);
 
+     
+
+        void AddOrder(string email, List<CartMovieVM> movies);
 
     }
 }

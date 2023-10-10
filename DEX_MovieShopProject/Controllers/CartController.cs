@@ -49,19 +49,19 @@ namespace DEX_MovieShopProject.Controllers
 
             //var queyrResult = _orderService.GetCartVM(movieIdsList);
 
-            newCartMovie.Movie = new Movie() { Title = "First title" };
-            newCartMovie.NoOfCopies = 2;
-            newCartMovie.SubTotal = 200;
+            //newCartMovie.Movie = new Movie() { Title = "First title" };
+            //newCartMovie.NoOfCopies = 2;
+            //newCartMovie.SubTotal = 200;
 
-            CartMovieVM newCartMovie2 = new CartMovieVM();
-            newCartMovie2.Movie = new Movie() { Title = "Second title" };
-            newCartMovie2.NoOfCopies = 3;
-            newCartMovie2.SubTotal = 600;
+            //CartMovieVM newCartMovie2 = new CartMovieVM();
+            //newCartMovie2.Movie = new Movie() { Title = "Second title" };
+            //newCartMovie2.NoOfCopies = 3;
+            //newCartMovie2.SubTotal = 600;
 
-            cart.CartMovies.Add(newCartMovie);
-            cart.CartMovies.Add(newCartMovie2);
+            //cart.CartMovies.Add(newCartMovie);
+            //cart.CartMovies.Add(newCartMovie2);
 
-            cart.Total = 800;
+            //cart.Total = 800;
 
             return View(cart);
         }
