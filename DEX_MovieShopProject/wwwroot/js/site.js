@@ -23,3 +23,24 @@ function showCart() {
     cartEle.classList.remove("notShowCart");
     cartEle.classList.add("showCart");
 }
+
+
+function incrementQuantity(movieId) {
+    $.ajax({
+        type: 'Post',
+        url: 'Order/AddToCart',
+        dataType: "json",
+        data: { id: movieId },
+        success: function (count) {
+            $('#cartCount').html(count);
+            showCart();
+        }
+    })
+    
+}
+
+
+function decrementQuantity(itemId) {
+    var quantityInput = document.getElementById('quantity-' + itemId);
+    quantityInput.stepDown();
+}

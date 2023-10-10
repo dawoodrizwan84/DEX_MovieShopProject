@@ -54,5 +54,18 @@ namespace DEX_MovieShopProject.Controllers
         }
 
 
+        public IActionResult ShoppingCart()
+        {
+
+            var movieIdsList = HttpContext.Session.Get<List<int>>("movieIdList");
+
+            var queyrResult = _orderService.GetCartVM(movieIdsList);
+
+
+
+            return View(queyrResult);
+        }
+
+
     }
 }
