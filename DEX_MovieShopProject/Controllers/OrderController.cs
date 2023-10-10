@@ -12,19 +12,21 @@ namespace DEX_MovieShopProject.Controllers
     {
 
         private readonly IOrderService _orderService;
+        private readonly ICustomerService _customerService;
 
-        public OrderController(IOrderService orderService)
+        public OrderController(IOrderService orderService, ICustomerService customerService)
         {
-            
+
             _orderService = orderService;
+            _customerService = customerService;
         }
 
         public IActionResult Index()
         {
-           return View();
+            return View();
         }
 
-        
+
         [HttpPost]
         public IActionResult AddtoCart(string id)
         {
@@ -43,7 +45,7 @@ namespace DEX_MovieShopProject.Controllers
 
         public IActionResult ShoppingCart()
         {
-            
+
             var movieIdsList = HttpContext.Session.Get<List<int>>("movieIdList");
 
             var queyrResult = _orderService.GetCartVM(movieIdsList);
@@ -53,19 +55,31 @@ namespace DEX_MovieShopProject.Controllers
             return View(queyrResult);
         }
 
-
-        public IActionResult ShoppingCart()
+        public IActionResult ConfirmOrder(string email)
         {
+            ConfirmVM confirmVM = new ConfirmVM();
+            confirmVM.customer = _customerService.GetCustomer(email);
 
             var movieIdsList = HttpContext.Session.Get<List<int>>("movieIdList");
+            confirmVM.cart = _orderService.GetCartVM(movieIdsList);
 
-            var queyrResult = _orderService.GetCartVM(movieIdsList);
-
-
-
-            return View(queyrResult);
+            TempData["email"] = email;
+            
+            return View(confirmVM);
         }
 
+
+        public IActionResult CreateOrder()
+        {
+            var email = (string)TempData["email"];
+            var movieIdsList = HttpContext.Session.Get<List<int>>("movieIdList");
+            var cart = _orderService.GetCartVM(movieIdsList);
+
+            _orderService.AddOrder(email, cart.CartMovies);
+
+            return RedirectToAction("ThankYou", "Customer");
+
+        }
 
     }
 }

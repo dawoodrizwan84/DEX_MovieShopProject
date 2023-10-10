@@ -40,53 +40,15 @@ namespace DEX_MovieShopProject.Controllers
             return View();
         }
 
-<<<<<<< Updated upstream
         public IActionResult ShoppingCart()
-=======
-        public IActionResult ShoppingCart(List<int> movieIdList)
->>>>>>> Stashed changes
         {
+            var cart = new CartVM();
+            var movieIdsList = HttpContext.Session.Get<List<int>>("movieIdList");
 
-<<<<<<< Updated upstream
             CartMovieVM newCartMovie = new CartMovieVM();
 
             //var queyrResult = _orderService.GetCartVM(movieIdsList);
 
-            newCartMovie.Movie = new Movie() { Title = "First title" };
-            newCartMovie.NoOfCopies = 2;
-            newCartMovie.SubTotal = 200;
-
-            CartMovieVM newCartMovie2 = new CartMovieVM();
-            newCartMovie2.Movie = new Movie() { Title = "Second title" };
-            newCartMovie2.NoOfCopies = 3;
-            newCartMovie2.SubTotal = 600;
-=======
-            var uniqueMovies = _db.Movies
-                     .Where(m => movieIdList
-                     .Any(i => i == m.Id));
->>>>>>> Stashed changes
-
-            var cartMovies = movieIdList.GroupBy(x => x)
-                    .Select(g => new CartMovieVM()
-                    {
-                        Movie = uniqueMovies
-                    .Where(m => m.Id == g.Key)
-                    .FirstOrDefault(),
-                        SubTotal = g.Count() * uniqueMovies
-                    .Where(m => m.Id == g.Key)
-                    .FirstOrDefault().Price
-
-                    }).ToList();
-
-            CartVM cartVM = new CartVM();
-            cartVM.CartMovies = cartMovies;
-            cartVM.Total = cartMovies.Sum(cm => cm.SubTotal);
-
-
-            //var cart = new CartVM();
-            //var movieIdsList = HttpContext.Session.Get<List<int>>("movieIdList");
-
-            //CartMovieVM newCartMovie = new CartMovieVM();
             //newCartMovie.Movie = new Movie() { Title = "First title" };
             //newCartMovie.NoOfCopies = 2;
             //newCartMovie.SubTotal = 200;
@@ -101,7 +63,7 @@ namespace DEX_MovieShopProject.Controllers
 
             //cart.Total = 800;
 
-            return View(cartVM);
+            return View(cart);
         }
     }
 }

@@ -1,0 +1,39 @@
+﻿@model DEX_MovieShopProject.Models.ViewModels.ConfirmVM
+
+
+<h2>
+    Summary
+</h2>
+
+<div class="row m-3">
+    <div class="col-md-6">
+        <h5 class="p-2">@Model.customer.FirstName @Model.customer.LastName </h5>
+        <h5 class="p-2">Address: @Model.customer.DeliveryAddress </h5>
+        <h5 class="p-2">City: @Model.customer.DeliveryCity </h5>
+        <h5 class="p-2">Zip Code:@Model.customer.DeliveryZip </h5>
+        <h5 class="p-2">Email: @Model.customer.EmailAddress </h5>
+        <h5 class="p-2">PhoneNo: @Model.customer.PhoneNo </h5>
+
+    </div>
+
+    <div class="col-md-6">
+        <h3 class="m-3">Order</h3>
+        @foreach (var item in Model.cart.CartMovies)
+        {
+           <div class="m-2">
+               <span class="p-2">@item.Movie.Title</span>
+               <span class="p-2">@item.Movie.Price</span>
+               <span class="p-2">@item.NoOfCopies</span>
+                <span class="p-2">@item.SubTotal</span>
+
+            </div>
+        }
+
+        <h3>Total Order Cost: @Model.cart.Total</h3>
+    </div>
+</div>
+
+<div class="m-md-5">
+    <a asp-action="CreateOrder" asp-controller="Order" class="btn btn-success btn-block btn-lg me-3">Place Order</a>
+    <a asp-action="Index" asp-controller="Movie" class="btn btn-primary btn-block btn-lg">Continue Shopping</a>
+</div>
