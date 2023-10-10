@@ -1,4 +1,6 @@
 ﻿@model DEX_MovieShopProject.Models.ViewModels.CartVM
+
+
 @{
     Layout = "_Layout";
 
@@ -13,8 +15,8 @@
                     <h1>Shopping Cart</h1>
                     <div>
                         <p class="mb-0">
-                            <span class="text-muted">Sort by:</span> <a href="#!" class="text-body">
-                                price <i class="fa fa-angle-down mt-1"></i>
+                            <span class="text-muted"></span> <a href="#!" class="text-body">
+                                <i class="fa fa-angle-down mt-1"></i>
                             </a>
                         </p>
                     </div>
@@ -26,7 +28,7 @@
                         <div class="card-body p-4">
                             <div class="row d-flex justify-content-between align-items-center">
                                 <div class="col-md-2 col-lg-2 col-xl-2">
-                                    <img src="@item.Movie.ImgUrl" class="img-fluid rounded-3" alt="@item.Movie.Title">
+                                    <img src="~/@item.Movie.ImgUrl" class="img-fluid rounded-3" alt="@item.Movie.Title">
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-3">
                                     <p class="lead fw-normal mb-2">@item.Movie.Title</p>
@@ -34,7 +36,7 @@
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                                     <button class="btn btn-link px-2 "
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown(); Remove(@item.Movie.Id)">
                                         <i class="fa fa-minus" aria-hidden="true"></i>
                                     </button>
 
@@ -42,7 +44,7 @@
                                            class="form-control form-control-sm" style="background-color:#6f42c1" />
 
                                     <button class="btn btn-link px-2"
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp(); Add((@item.Movie.Id))">
                                         <i class="fa fa-plus"></i>
                                     </button>
                                 </div>
@@ -69,13 +71,23 @@
                     </div>
                 </div>
 
+                <div class="d-flex justify-content-center">
+                    <div>
+                        <a asp-action="Index" asp-controller="Home" class="btn btn-secondary btn-lg me-3">
+                            Continue shopping
+                        </a>
+                    </div>
+                    <div>
+                        <a asp-action="CheckOut" asp-controller="Customer" class="btn btn-light btn-lg me-3">
+                            Check Out
+                        </a>
 
-                <div class="d-flex justify-content-center" >
-                    <button type="button" class="btn btn-secondary btn-lg me-3" href="~/Home/Index">Continue shopping</button>
-                    <button type="button" class="btn btn-light btn-lg me-3" href="/Customer/Create">Buy Now</button>
+
+
+
+
+
+                    </div>
                 </div>
-
             </div>
-        </div>
-    </div>
 </section>

@@ -6,6 +6,8 @@ namespace DEX_MovieShopProject.Models
 {
     public class Customer
     {
+       
+
         [Required]
         public int Id { get; set; }
 
@@ -18,19 +20,19 @@ namespace DEX_MovieShopProject.Models
         public string LastName { get; set; }
 
         [DisplayName("Billing Address")]
-        [Required]
+       
         public string BillingAddress { get; set; }
 
         [DisplayName("Billing Zip")]
-        [Required]
+       
         public int BillingZip { get; set; }
 
         [DisplayName("Billing City")]
-        [Required]
+       
         public string BillingCity { get; set; }
 
         [DisplayName("Delivery Address")]
-        
+        [Required]
         public string DeliveryAddress { get; set;}
 
         [DisplayName("Delivery Zip")]

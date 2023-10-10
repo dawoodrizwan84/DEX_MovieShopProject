@@ -19,12 +19,12 @@
             <table class="table table-striped table-bordered tabel-dark">
                 <thead>
                     <tr>
-                       @*  <th>Id</th> *@
+                        @* <th>Id</th>  *@
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Billing Address</th>
+                        @* <th>Billing Address</th>
                         <th>Billing Zip</th>
-                        <th>Billing City</th>
+                        <th>Billing City</th> *@
                         <th>Delivery Address</th>
                         <th>Delivery Zip</th>
                         <th>Delivery City</th>
@@ -41,23 +41,24 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                           @*  <td>@item.Id</td> *@
+                          @*  <td>@item.Id</td>  *@
                             <td>@item.FirstName</td>
                             <td>@item.LastName</td>
-                            <td>@item.BillingAddress</td>
+                           @*  <td>@item.BillingAddress</td>
                             <td>@item.BillingZip</td>
-                            <td>@item.BillingCity</td>
+                            <td>@item.BillingCity</td>  *@
                             <td>@item.DeliveryAddress</td>
                             <td>@item.DeliveryZip</td>
-                            <td>@item.DeliveryCity</td>
+                            <td>@item.DeliveryCity</td> 
                             <td>@item.EmailAddress</td>
                             <td>@item.PhoneNo</td>
                             
                             
                             <td>
                                 <a value ="Edit sm-2 m-2" href="/Customer/Edit?id=@item.Id">Edit</a> |
-                                <a value ="Delete sm-2 m-2" onclick="return window.confirm('Are You Sure?')" href="/Customer/Delete?id=@item.Id">Delete</a>
+                               
                                 <a value="Delete sm-2 m-2"  href="/Customer/Details?id=@item.Id">Details</a>
+                                <a value="Delete sm-2 m-2" style="color:red" onclick="return window.confirm('Are You Sure?')" href="/Customer/Delete?id=@item.Id">Delete</a>
                             </td>
 
                         </tr>
