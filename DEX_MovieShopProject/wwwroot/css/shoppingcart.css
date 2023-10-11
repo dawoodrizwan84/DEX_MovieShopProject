@@ -38,10 +38,11 @@ table {
     }
 
 
-        table tr td.number span.num {
-            width: 50px;
+        table tr td.number input.num {
+            width: 40px;
             height: 30px;
             line-height: 30px;
+            color:white;
         }
 
 .box001 {

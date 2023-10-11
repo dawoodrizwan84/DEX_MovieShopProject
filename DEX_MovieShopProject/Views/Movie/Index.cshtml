@@ -7,14 +7,16 @@
 <link href="~/css/shoppingcart.css" rel="stylesheet" />
 
 <h1 style="margin-top:100px;">Movies List</h1>
+<hr />
 <section>
 
-    <table>
+    <table style="width: 1200px;">
         <tr class="title">
             <td scope="col">Name</td>
             <td scope="col">Director</td>
             <td scope="col">ReleaseYear</td>
             <td scope="col">Price</td>
+            <td scope="col"></td>
             <td scope="col"></td>
         </tr>
 
@@ -35,7 +37,12 @@
                     <td>
 
                         <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="javascript:;" class="btn btn-secondary" onclick="Add(@item.Id)">Add to Cart</a>
+                        </div>
                     </td>
                 </tr>
 

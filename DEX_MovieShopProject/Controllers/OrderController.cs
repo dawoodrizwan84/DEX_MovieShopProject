@@ -30,13 +30,13 @@ namespace DEX_MovieShopProject.Controllers
         [Route("OL")]
         public IActionResult Index()
         {
-            string userId = "";
-            var orderList = _orderService.GetOrders();
+            //string userId = "";
+            //var orderList = _orderService.GetOrders();
 
-            return View(orderList);
+            return View();
         }
 
-        
+
 
         [HttpPost]
         public IActionResult AddtoCart(string id)
@@ -62,20 +62,9 @@ namespace DEX_MovieShopProject.Controllers
             var queyrResult = _orderService.GetCartVM(movieIdsList);
 
 
-
             return View(queyrResult);
         }
 
-        //public IActionResult AddItemToShoppingCAART(int Id)
-        //{
-        //    var item=_movieService.GetMovieById(Id);
-        //    if (item != null)
-        //    {
-        //    _
-        //    }
-            
-        //    return
-        //}
 
         public IActionResult ConfirmOrder(string email)
         {

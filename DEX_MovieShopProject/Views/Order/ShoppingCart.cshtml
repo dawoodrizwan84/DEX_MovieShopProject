@@ -81,7 +81,7 @@
 <link href="~/css/shoppingcart.css" rel="stylesheet" />
 
 <h1 style="margin-top:100px;">Shopping Cart</h1>
-
+<hr />
 <section>
 
 
@@ -106,18 +106,19 @@
                     </td>
                     <td class="price">@item.Movie.Price kr</td>
                     <td class="number">
-                        
-                            <button class="btn btn-link px-2 "
-                                    onclick="decrease()">
-                                <i class="fa fa-minus" aria-hidden="true"></i>
-                            </button>
-                            <span class="num">@item.NoOfCopies</span>
-                            <button class="btn btn-link px-2"
-                                    onclick="increase()">
-                                <i class="fa fa-plus"></i>
-                            </button>
+                        <button class="btn btn-link px-2 "
+                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <input id="quantity" min="0" name="quantity" value="@item.NoOfCopies" type="number"
+                               class="num" style="background-color:#6f42c1" />
+
+                        <button class="btn btn-link px-2"
+                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                            <i class="fa fa-plus"></i>
+                        </button>
                     </td>
-                    <td class="totalprice">@item.SubTotal kr</td>
+                    <td class="sum">@item.SubTotal kr</td>
                     <td>
                     <a href="#!" class="text-danger"><i class="fa fa-trash fa-lg"></i></a>
                     </td>
@@ -148,3 +149,6 @@
     </div>
 </section>
 
+
+
+            

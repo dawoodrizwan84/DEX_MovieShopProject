@@ -42,3 +42,18 @@ function increase() {
         quantityInput.value = quantity + 1;
     }
 }
+
+$('.increment').click(function () {
+    var goods_num = $(this).siblings('#goods_num').val();
+    goods_num++;
+    $(this).siblings("#goods_num").val(goods_num);
+
+    var num = $(this).siblings('#goods_num').val();
+
+    // var price = $(this).siblings(".price").text();
+    // price=price.substr(1)
+    // var sum = (number * price).toFixed(2);
+    // $(this).siblings(".sum").text(price*num+'kr')
+    // getSun();
+
+})
