@@ -7,5 +7,7 @@
         public int NoOfCopies { get; set; }
 
         public decimal SubTotal { get; set; } = 0;
+
+      
     }
 }

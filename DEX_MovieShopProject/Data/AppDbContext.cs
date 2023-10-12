@@ -16,6 +16,6 @@ namespace DEX_MovieShopProject.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderRow> OrderRows { get; set; }
 
-
+        
     }
 }

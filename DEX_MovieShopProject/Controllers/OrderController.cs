@@ -14,6 +14,7 @@ namespace DEX_MovieShopProject.Controllers
         private readonly IOrderService _orderService;
         private readonly ICustomerService _customerService;
 
+
         public OrderController(IOrderService orderService, ICustomerService customerService)
         {
 
@@ -55,16 +56,16 @@ namespace DEX_MovieShopProject.Controllers
             return View(queyrResult);
         }
 
-        public IActionResult ConfirmOrder(string email)
+        public IActionResult ConfirmOrder(string emailAddress)
         {
             ConfirmVM confirmVM = new ConfirmVM();
-            confirmVM.customer = _customerService.GetCustomer(email);
+            confirmVM.customer = _customerService.GetCustomer(emailAddress);
 
             var movieIdsList = HttpContext.Session.Get<List<int>>("movieIdList");
             confirmVM.cart = _orderService.GetCartVM(movieIdsList);
 
-            TempData["email"] = email;
-            
+            TempData["email"] = emailAddress;
+
             return View(confirmVM);
         }
 
@@ -80,6 +81,11 @@ namespace DEX_MovieShopProject.Controllers
             return RedirectToAction("ThankYou", "Customer");
 
         }
+
+    
+
+      
+
 
     }
 }

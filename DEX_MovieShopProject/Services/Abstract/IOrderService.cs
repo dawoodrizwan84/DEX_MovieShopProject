@@ -9,9 +9,9 @@ namespace DEX_MovieShopProject.Services.Abstract
         List<Movie> GetMostSoldMovies();
         CartVM GetCartVM(List<int> movieIdList);
 
-     
-
         void AddOrder(string email, List<CartMovieVM> movies);
+
+       
 
     }
 }

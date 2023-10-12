@@ -18,6 +18,10 @@ namespace DEX_MovieShopProject.Controllers
         }
 
 
+
+      
+
+
         [HttpPost]
         public IActionResult AddtoCart(string id)
         {

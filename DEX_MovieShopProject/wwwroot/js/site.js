@@ -48,6 +48,13 @@ function NotShowCart()
     cartEle.classList.remove("notShowCart");
     cartEle.classList.add("showCart");
 }
+
+
+
+
+
+
+
 //function decrementQuantity(itemId) {
 //    var quantityInput = document.getElementById('quantity-' + itemId);
 //    quantityInput.stepDown();

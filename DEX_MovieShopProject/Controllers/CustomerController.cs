@@ -38,7 +38,7 @@ namespace DEX_MovieShopProject.Controllers
 
             if (TempData["createorder"] is not null)
             {
-                return RedirectToAction("ConfirmOrder", "Order", new { newCustomer.EmailAddress });
+                return RedirectToAction("ConfirmOrder", "Order", new {emailAddress = newCustomer.EmailAddress });
             }
             return RedirectToAction("Index");
         }

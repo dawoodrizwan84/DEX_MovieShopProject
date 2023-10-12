@@ -4,6 +4,7 @@ using DEX_MovieShopProject.Models.ViewModels;
 using DEX_MovieShopProject.Service.Abstract;
 using DEX_MovieShopProject.Service.Implementation;
 using DEX_MovieShopProject.Services.Abstract;
+using Microsoft.EntityFrameworkCore;
 
 namespace DEX_MovieShopProject.Services.Implementation
 {
@@ -90,5 +91,12 @@ namespace DEX_MovieShopProject.Services.Implementation
             _db.SaveChanges();
 
         }
+
+
+      
+
+
+
+
     }
 }
