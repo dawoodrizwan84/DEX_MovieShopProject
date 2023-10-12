@@ -20,6 +20,8 @@ namespace DEX_MovieShopProject.Service.Implementation
 
         }
 
+       
+
         public List<Movie> GetMovies()
         {
             return _db.Movies.ToList();
@@ -57,7 +59,9 @@ namespace DEX_MovieShopProject.Service.Implementation
             try
             {
                 var data=this.GetMovieById(id);
+
                 if(data==null)
+
                 {
                     return false;
                 }

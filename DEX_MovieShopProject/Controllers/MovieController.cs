@@ -12,10 +12,11 @@ namespace DEX_MovieShopProject.Controllers
     {
         private readonly AppDbContext _appDbContext;
 
+        private readonly AppDbContext _appDbContext;
         private readonly ILogger<MovieController> _logger;
         private readonly IMovieService _movieService;
 
-        public MovieController(ILogger<MovieController> logger, IMovieService movieService,AppDbContext appDbContext)
+        public MovieController(ILogger<MovieController> logger, IMovieService movieService, AppDbContext appDbContext)
         {
             _logger = logger;
             _movieService = movieService;
@@ -35,6 +36,18 @@ namespace DEX_MovieShopProject.Controllers
 
             ViewBag.Empty = searchTitle;
 
+            return View(result);
+        }
+
+        public IActionResult Search(string searchTitle)
+        {
+            var result = _appDbContext.Movies.Where(m => m.Title.Contains(searchTitle) ||
+                                    m.Director.Contains(searchTitle)).ToList();
+
+            if (result.Count == 0)
+            {
+                ViewBag.Empty = "No results for " + searchTitle;
+            }
             return View(result);
         }
 
@@ -59,15 +72,15 @@ namespace DEX_MovieShopProject.Controllers
             _movieService.CreateMovie(newMovie);
 
 
-           return RedirectToAction("Index");
+            return RedirectToAction("Index");
 
 
-       }
+        }
 
 
         public IActionResult Edit(int id)
         {
-            var record=_movieService.GetMovieById(id);
+            var record = _movieService.GetMovieById(id);
 
             return View(record);
 
@@ -93,12 +106,12 @@ namespace DEX_MovieShopProject.Controllers
         }
 
 
-        public IActionResult Delete(int id) 
+        public IActionResult Delete(int id)
         {
-            var result = _movieService.DeleteMovie(id); 
+            var result = _movieService.DeleteMovie(id);
             return RedirectToAction("Index");
         }
-      
+
 
         public IActionResult Details(int id)
         {

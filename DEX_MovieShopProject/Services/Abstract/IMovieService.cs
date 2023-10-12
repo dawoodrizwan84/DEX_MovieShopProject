@@ -14,6 +14,7 @@ namespace DEX_MovieShopProject.Service.Abstract
 
         bool DeleteMovie(int id);
 
+      
 
     }
 }

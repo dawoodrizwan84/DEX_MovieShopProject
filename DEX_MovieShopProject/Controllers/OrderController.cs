@@ -20,23 +20,19 @@ namespace DEX_MovieShopProject.Controllers
 
         public OrderController(IOrderService orderService,ICustomerService customerService,IMovieService movieService, AppDbContext db)
         {
-            
+
             _orderService = orderService;
             _customerService = customerService;
             _movieService = movieService;
             _db = db;
+
         }
 
         [Route("OL")]
         public IActionResult Index()
         {
-            //string userId = "";
-            //var orderList = _orderService.GetOrders();
-
             return View();
         }
-
-
 
         [HttpPost]
         public IActionResult AddtoCart(string id)
@@ -56,7 +52,7 @@ namespace DEX_MovieShopProject.Controllers
 
         public IActionResult ShoppingCart()
         {
-            
+
             var movieIdsList = HttpContext.Session.Get<List<int>>("movieIdList");
 
             var queyrResult = _orderService.GetCartVM(movieIdsList);
@@ -65,6 +61,31 @@ namespace DEX_MovieShopProject.Controllers
             return View(queyrResult);
         }
 
+        public IActionResult ConfirmOrder(string email)
+        {
+            ConfirmVM confirmVM = new ConfirmVM();
+            confirmVM.customer = _customerService.GetCustomer(email);
+
+            var movieIdsList = HttpContext.Session.Get<List<int>>("movieIdList");
+            confirmVM.cart = _orderService.GetCartVM(movieIdsList);
+
+            TempData["email"] = email;
+            
+            return View(confirmVM);
+        }
+
+
+        public IActionResult CreateOrder()
+        {
+            var email = (string)TempData["email"];
+            var movieIdsList = HttpContext.Session.Get<List<int>>("movieIdList");
+            var cart = _orderService.GetCartVM(movieIdsList);
+
+            _orderService.AddOrder(email, cart.CartMovies);
+
+            return RedirectToAction("ThankYou", "Customer");
+
+        }
 
         public IActionResult ConfirmOrder(string email)
         {

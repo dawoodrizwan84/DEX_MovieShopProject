@@ -1,4 +1,4 @@
-﻿@model Movie
+@model Movie
 
 @{
     ViewData["Title"] = "Details";
@@ -6,6 +6,7 @@
 
 <link href="~/css/shoppingcart.css" rel="stylesheet" />
 <script src="~/js/site.js"></script>
+
 
 
 <h1 style="margin-top:100px">Details of Movie</h1>
@@ -17,6 +18,7 @@
     </div>
     <br />
     <div>
+
         <h2 class="card-title">@Model.Title</h2>
         <h5 class="card-title">Director: @Model.Director</h5>
         <p class="card-text">@Model.Description</p>
@@ -28,12 +30,12 @@
     <a href="javascript:;" class="btn btn-secondary" onclick="Add(~/@Model.Id)">Add to Cart</a>
 </div>
 
+      
+
 <br />
 <br />
 <br />
 <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
 <a asp-action="Index">Back to List</a>
-
-
 
 

@@ -1,6 +1,7 @@
 ﻿using DEX_MovieShopProject.Data;
 using DEX_MovieShopProject.Models;
 using DEX_MovieShopProject.Services.Abstract;
+using Microsoft.Identity.Client;
 
 namespace DEX_MovieShopProject.Services.Implementation
 {
@@ -15,11 +16,11 @@ namespace DEX_MovieShopProject.Services.Implementation
 
 
         }
-        List<Customer> Customers { get; set; } = new List<Customer>();  
+        List<Customer> Customers { get; set; } = new List<Customer>();
 
-        public List<Customer>GetCustomer() 
+        public List<Customer> GetCustomer()
         {
-        return _db.Customers.ToList();
+            return _db.Customers.ToList();
         }
 
         public Customer GetCustomerById(int id)
@@ -38,28 +39,29 @@ namespace DEX_MovieShopProject.Services.Implementation
 
         public bool UpdateCustomer(Customer newCustomer)
         {
-            try 
+            try
             {
                 _db.Customers.Update(newCustomer);
                 _db.SaveChanges();
                 return true;
             }
 
-            catch (Exception ex) 
-            
+            catch (Exception ex)
+
             {
                 return false;
             }
-        
-        
+
+
         }
 
         public bool DeleteCustomer(int id)
         {
-            try 
+            try
             {
                 var data = this.GetCustomerById(id);
-                if(data == null)
+                if (data == null)
+
                 {
                     return false;
                 }
@@ -68,11 +70,23 @@ namespace DEX_MovieShopProject.Services.Implementation
                 return true;
             }
 
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 return false;
             }
-        
+
+        }
+
+        public bool CheckExists(string email)
+        {
+            return _db.Customers
+                .Any(c => c.EmailAddress == email);
+        }
+
+        public Customer GetCustomer(string email)
+        {
+            return _db.Customers.Where(c => c.EmailAddress == email)
+                                .FirstOrDefault();
         }
 
         public bool CheckExists(string email)

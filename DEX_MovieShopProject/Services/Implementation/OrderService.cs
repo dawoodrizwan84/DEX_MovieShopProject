@@ -12,7 +12,7 @@ namespace DEX_MovieShopProject.Services.Implementation
         private readonly AppDbContext _db;
         private readonly IMovieService _movieService;
 
-        public OrderService(AppDbContext db,IMovieService movieService)
+        public OrderService(AppDbContext db, IMovieService movieService)
 
         {
             _db = db;
@@ -30,9 +30,7 @@ namespace DEX_MovieShopProject.Services.Implementation
                     soldCopies = x.Count()
                 })
                 .OrderByDescending(x => x.soldCopies).Take(5).ToList();
-
             var popMovies = new List<Movie>();
-
             foreach (var item in groupMovies)
             {
                 popMovies.Add(_movieService.GetMovieById(item.movieId));
@@ -40,20 +38,20 @@ namespace DEX_MovieShopProject.Services.Implementation
             return popMovies;
         }
 
-        public CartVM GetCartVM(List<int>movieIdList)
+        public CartVM GetCartVM(List<int> movieIdList)
         {
             var uniqueMovies = _db.Movies
                 .Where(m => movieIdList
                 .Any(i => i == m.Id));
 
             var cartMovies = movieIdList.GroupBy(x => x)
-                .Select(g => new CartMovieVM() 
-                { 
+                .Select(g => new CartMovieVM()
+                {
                     Movie = uniqueMovies
-                    .Where(m=>m.Id==g.Key)
+                    .Where(m => m.Id == g.Key)
                     .FirstOrDefault(),
-                    NoOfCopies=g.Count(),
-                    SubTotal=g.Count()*uniqueMovies
+                    NoOfCopies = g.Count(),
+                    SubTotal = g.Count() * uniqueMovies
                     .Where(m => m.Id == g.Key)
                     .FirstOrDefault().Price
 
@@ -70,13 +68,13 @@ namespace DEX_MovieShopProject.Services.Implementation
             Order newOrder = new Order();
             newOrder.OrderDate = DateTime.Now;
             newOrder.Customer = _db.Customers
-                                .Where(c=>c.EmailAddress==email)
-                                .FirstOrDefault();  
-
+                                .Where(c => c.EmailAddress == email)
+                                .FirstOrDefault();
             List<OrderRow> orderRows = new List<OrderRow>();
             foreach (var item in cartMovies)
             {
-                for(int i = 0; i < item.NoOfCopies; i++) 
+                for (int i = 0; i < item.NoOfCopies; i++)
+
                 {
                     OrderRow row = new OrderRow()
                     {
@@ -90,11 +88,7 @@ namespace DEX_MovieShopProject.Services.Implementation
             newOrder.OrderRows = orderRows;
             _db.Orders.Add(newOrder);
             _db.SaveChanges();
-        }
 
-        public List<Order> GetOrders()
-        {
-            return _db.Orders.ToList();
         }
     }
 }
